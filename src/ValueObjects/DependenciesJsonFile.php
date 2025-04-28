@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Illuminate\Support\Arr;
@@ -9,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 /**
  * @property-read array<mixed> $content
  */
-class DependenciesJsonFile extends ValueObject
+final class DependenciesJsonFile extends ValueObject
 {
     /** @var array<mixed> */
     private array $content;

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Formatters\NameFormatter;
 
-class FirstName extends ValueObject
+final class FirstName extends ValueObject
 {
     public function __construct(mixed $value)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Enums;
 
 enum CurrenciesEnum: string
@@ -164,6 +166,17 @@ enum CurrenciesEnum: string
     case YER = 'Yemeni rial';
     case ZAR = 'South African rand';
     case ZMW = 'Zambian kwacha';
+
+    public static function enabled(): array
+    {
+        return array_values(
+            collect(self::cases())
+                ->filter(function ($currency) {
+                    return in_array($currency->name, config('app.currencies', []));
+                })
+                ->toArray()
+        );
+    }
 
     public function getLabel(): string
     {
@@ -339,16 +352,5 @@ enum CurrenciesEnum: string
             self::ZAR => '710',
             self::ZMW => '967',
         };
-    }
-
-    public static function enabled(): array
-    {
-        return array_values(
-            collect(self::cases())
-                ->filter(function ($currency) {
-                    return in_array($currency->name, config('app.currencies', []));
-                })
-                ->toArray()
-        );
     }
 }

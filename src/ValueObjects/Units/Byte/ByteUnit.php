@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Units\Byte;
 
 use ByteUnits;
@@ -37,14 +39,14 @@ class ByteUnit extends ValueObject implements UnitValueContract
         );
     }
 
-    public function withUnit(?ByteUnitEnum $unit = null): string
-    {
-        return ByteFormatter::format($this->system->format($unit?->name));
-    }
-
     public static function unit(): ?string
     {
         return ByteUnitEnum::B->getLabel();
+    }
+
+    public function withUnit(?ByteUnitEnum $unit = null): string
+    {
+        return ByteFormatter::format($this->system->format($unit?->name));
     }
 
     public function convertIn(ByteUnitEnum $unit): string
@@ -52,27 +54,27 @@ class ByteUnit extends ValueObject implements UnitValueContract
         return $this->withUnit($unit);
     }
 
-    public function isEqualTo(ByteUnit $compare): bool
+    public function isEqualTo(self $compare): bool
     {
         return $this->bytes === $compare->bytes;
     }
 
-    public function isLessThanOrEqualTo(ByteUnit $compare): bool
+    public function isLessThanOrEqualTo(self $compare): bool
     {
         return $this->bytes <= $compare->bytes;
     }
 
-    public function isLessThan(ByteUnit $compare): bool
+    public function isLessThan(self $compare): bool
     {
         return $this->bytes < $compare->bytes;
     }
 
-    public function isGreaterThanOrEqualTo(ByteUnit $compare): bool
+    public function isGreaterThanOrEqualTo(self $compare): bool
     {
         return $this->bytes >= $compare->bytes;
     }
 
-    public function isGreaterThan(ByteUnit $compare): bool
+    public function isGreaterThan(self $compare): bool
     {
         return $this->bytes > $compare->bytes;
     }

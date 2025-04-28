@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Casts;
 
 use IBroStudio\DataObjects\ValueObjects\Authentication\Authentication;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 
-class EloquentAuthenticationValueObjectCast implements CastsAttributes
+final class EloquentAuthenticationValueObjectCast implements CastsAttributes
 {
     public function __construct(
         /** @var class-string<\IBroStudio\DataObjects\Contracts\AuthenticationContract> $authenticationValueObjectClass */

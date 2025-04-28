@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\DTO\VatNumberAuthenticationDTO;
@@ -10,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Mpociot\VatCalculator\Facades\VatCalculator;
 
-class VatNumber extends ValueObject
+final class VatNumber extends ValueObject
 {
     public readonly string $number;
 

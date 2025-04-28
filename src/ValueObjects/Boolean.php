@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class Boolean extends ValueObject
+final class Boolean extends ValueObject
 {
     public function __construct(mixed $value)
     {

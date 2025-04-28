@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
+use Exception;
 use Illuminate\Validation\ValidationException;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
-class Phone extends ValueObject
+final class Phone extends ValueObject
 {
     public readonly string $national;
 
@@ -26,7 +29,7 @@ class Phone extends ValueObject
                 $this->phone->formatE164()
             );
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw ValidationException::withMessages([$e->getMessage()]);
         }
 

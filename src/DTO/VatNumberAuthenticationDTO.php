@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\DTO;
 
 use Spatie\LaravelData\Data;
+use stdClass;
 
 class VatNumberAuthenticationDTO extends Data
 {
@@ -13,7 +16,7 @@ class VatNumberAuthenticationDTO extends Data
         public string $countryCode,
     ) {}
 
-    public static function fromViesApi(\stdClass $response): self
+    public static function fromViesApi(stdClass $response): self
     {
         return new self(
             name: $response->name,

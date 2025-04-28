@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Enums\SemanticVersionSegmentsEnum;
 use IBroStudio\DataObjects\ValueObjects\SemanticVersion;
 use Illuminate\Validation\ValidationException;

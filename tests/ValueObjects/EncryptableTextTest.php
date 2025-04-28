@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Validation\ValidationException;

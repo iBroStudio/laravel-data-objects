@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Casts\EloquentValueObjectCast;
@@ -38,6 +40,15 @@ abstract class ValueObject implements Arrayable, Castable
         }
     }
 
+    /**
+     * @param  array<string, mixed>  $arguments
+     * @return EloquentValueObjectCast
+     */
+    public static function castUsing(array $arguments): CastsAttributes
+    {
+        return new EloquentValueObjectCast(static::class, $arguments);
+    }
+
     public function toArray(): array
     {
         return (array) $this->value;
@@ -57,15 +68,6 @@ abstract class ValueObject implements Arrayable, Castable
     public function properties(): array
     {
         return get_object_vars($this);
-    }
-
-    /**
-     * @param  array<string, mixed>  $arguments
-     * @return EloquentValueObjectCast
-     */
-    public static function castUsing(array $arguments): CastsAttributes
-    {
-        return new EloquentValueObjectCast(static::class, $arguments);
     }
 
     protected function validate(): void

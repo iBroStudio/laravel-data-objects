@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Tests\Support\DTO\FakeDTOWithCollections;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
 use Illuminate\Support\Collection;

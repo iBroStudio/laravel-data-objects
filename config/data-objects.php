@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Casts\DTOCollectionCastTransformer;
 use IBroStudio\DataObjects\Casts\DTOValueObjetCastTransformer;
 use IBroStudio\DataObjects\ValueObjects;

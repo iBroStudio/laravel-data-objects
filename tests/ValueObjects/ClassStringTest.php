@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+use Exception;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Validation\ValidationException;
@@ -39,9 +42,9 @@ it('can instantiate ClassString class', function () {
     $classString = ClassString::from('Exception');
 
     expect($classString->instantiate())
-        ->toBeInstanceOf(\Exception::class)
+        ->toBeInstanceOf(Exception::class)
         ->and($classString->instantiateWith(['message' => 'test']))
-        ->toEqual(new \Exception('test'));
+        ->toEqual(new Exception('test'));
 });
 
 it('can return ClassString object value as string', function () {

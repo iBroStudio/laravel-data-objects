@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Periods;
 
 use IBroStudio\DataObjects\ValueObjects\IntegerValueObject;
 
-class MonthPeriod extends IntegerValueObject
+final class MonthPeriod extends IntegerValueObject
 {
     public function withUnit(): string
     {

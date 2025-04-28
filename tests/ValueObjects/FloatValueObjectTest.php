@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Brick\Math\RoundingMode;
 use IBroStudio\DataObjects\ValueObjects\FloatValueObject;
 use Illuminate\Validation\ValidationException;

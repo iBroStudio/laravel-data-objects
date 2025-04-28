@@ -18,19 +18,8 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'IBroStudio\\DataObjects\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'IBroStudio\\DataObjects\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            DataObjectsServiceProvider::class,
-            LaravelDataServiceProvider::class,
-            Pdp\ServiceProvider::class,
-            VatCalculatorServiceProvider::class,
-            TestServiceProvider::class,
-        ];
     }
 
     public function getEnvironmentSetUp($app)
@@ -43,8 +32,19 @@ class TestCase extends Orchestra
          }
          */
 
-        foreach (File::allFiles(__DIR__.'/Support/Database/Migrations') as $migration) {
+        foreach (File::allFiles(__DIR__ . '/Support/Database/Migrations') as $migration) {
             (include $migration->getRealPath())->up();
         }
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            DataObjectsServiceProvider::class,
+            LaravelDataServiceProvider::class,
+            Pdp\ServiceProvider::class,
+            VatCalculatorServiceProvider::class,
+            TestServiceProvider::class,
+        ];
     }
 }

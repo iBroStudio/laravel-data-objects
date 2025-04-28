@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\Periods\WeekPeriod;
 
 it('can instantiate WeekPeriod object value', function () {

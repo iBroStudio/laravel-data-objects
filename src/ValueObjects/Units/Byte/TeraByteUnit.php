@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Units\Byte;
 
 use ByteUnits\Metric;
 use IBroStudio\DataObjects\Contracts\UnitValueContract;
 use IBroStudio\DataObjects\Enums\ByteUnitEnum;
 
-class TeraByteUnit extends ByteUnit implements UnitValueContract
+final class TeraByteUnit extends ByteUnit implements UnitValueContract
 {
     public static function from(mixed ...$values): static
     {

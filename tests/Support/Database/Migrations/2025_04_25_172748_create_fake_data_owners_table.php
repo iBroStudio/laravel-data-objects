@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('fake_data_owners', function (Blueprint $table) {
             $table->id();
+            $table->string('class')->nullable();
+            $table->string('type')->nullable();
             $table->json('data_object')->nullable();
             $table->json('text_vo')->nullable();
             $table->json('boolean_vo')->nullable();

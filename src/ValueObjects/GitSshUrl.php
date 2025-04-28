@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Illuminate\Validation\ValidationException;
 
-class GitSshUrl extends ValueObject
+final class GitSshUrl extends ValueObject
 {
     public readonly string $provider;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\Units\DecimalUnit;
 
 it('can instantiate DecimalUnit', function () {

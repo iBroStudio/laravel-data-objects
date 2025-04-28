@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\Authentication\SshKey;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;

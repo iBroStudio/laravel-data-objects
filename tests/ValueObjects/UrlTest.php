@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\Url;
 use Illuminate\Validation\ValidationException;
 
@@ -23,7 +25,7 @@ it('can get Url object value path segments', function () {
 
 it('can get Url object value query parameters', function () {
     $url = Url::from('https://ibro.studio/directory/test?val1=1&val2=2');
-    dd($url->getSegments());
+
     expect($url->getQuery())->toBe('val1=1&val2=2')
         ->and($url->getQueryParameter('val1'))->toBe('1')
         ->and($url->getQueryParameter('val2'))->toBe('2');

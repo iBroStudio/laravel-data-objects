@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Rules;
 
 use Closure;
+use Exception;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Crypt;
 
-class IsEncryptedRule implements ValidationRule
+final class IsEncryptedRule implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -21,7 +24,7 @@ class IsEncryptedRule implements ValidationRule
             Crypt::decryptString($value);
 
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }

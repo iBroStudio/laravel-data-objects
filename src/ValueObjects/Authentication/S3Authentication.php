@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Authentication;
 
 use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Support\Str;
 
-class S3Authentication extends Authentication
+final class S3Authentication extends Authentication
 {
     public readonly EncryptableText $secret;
 
@@ -29,11 +31,12 @@ class S3Authentication extends Authentication
         );
     }
 
-    public function value(): string
+    public function toArray(): array
     {
-        return Str::of($this->key)
-            ->append(':')
-            ->append($this->secret->value);
+        return [
+            'key' => $this->key,
+            'secret' => $this->secret->value,
+        ];
     }
 
     protected function validate(): void
@@ -41,13 +44,5 @@ class S3Authentication extends Authentication
         if ($this->key === '') {
             throw EmptyValueObjectException::withMessages(['Key cannot be empty.']);
         }
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'key' => $this->key,
-            'secret' => $this->secret->value,
-        ];
     }
 }

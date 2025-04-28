@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
-class ClassString extends ValueObject
+final class ClassString extends ValueObject
 {
     public function classExists(): bool
     {

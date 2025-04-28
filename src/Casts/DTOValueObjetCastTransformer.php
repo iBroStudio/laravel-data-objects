@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Casts;
 
 use IBroStudio\DataObjects\ValueObjects\Authentication\Authentication;
@@ -10,7 +12,7 @@ use Spatie\LaravelData\Casts\Uncastable;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 
-class DTOValueObjetCastTransformer implements Cast, IterableItemCast
+final class DTOValueObjetCastTransformer implements Cast, IterableItemCast
 {
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): ValueObject|Uncastable
     {
@@ -22,7 +24,7 @@ class DTOValueObjetCastTransformer implements Cast, IterableItemCast
         return $this->castValue($property->type->iterableItemType, $value);
     }
 
-    protected function castValue(
+    private function castValue(
         ?string $type,
         mixed $value,
     ): Uncastable|null|ValueObject {

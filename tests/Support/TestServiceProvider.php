@@ -27,7 +27,7 @@ class TestServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            abstract: Generator::class.':'.config('app.faker_locale'),
+            abstract: Generator::class . ':' . config('app.faker_locale'),
             concrete: Generator::class
         );
     }

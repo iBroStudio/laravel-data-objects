@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Terminal;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
 
-class ValidateSshKey
+final class ValidateSshKey
 {
     private string $keyPath;
 

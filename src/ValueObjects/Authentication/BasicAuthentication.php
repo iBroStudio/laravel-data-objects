@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Authentication;
 
 use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Support\Str;
 
-class BasicAuthentication extends Authentication
+final class BasicAuthentication extends Authentication
 {
     public readonly EncryptableText $password;
 
@@ -29,18 +31,18 @@ class BasicAuthentication extends Authentication
         );
     }
 
-    protected function validate(): void
-    {
-        if ($this->username === '') {
-            throw EmptyValueObjectException::withMessages(['Username cannot be empty.']);
-        }
-    }
-
     public function toArray(): array
     {
         return [
             'username' => $this->username,
             'password' => $this->password->value,
         ];
+    }
+
+    protected function validate(): void
+    {
+        if ($this->username === '') {
+            throw EmptyValueObjectException::withMessages(['Username cannot be empty.']);
+        }
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\DTO\VatNumberAuthenticationDTO;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatableGBVatNumberException;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatedVatNumberException;

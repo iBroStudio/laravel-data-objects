@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
-class Text extends ValueObject {}
+final class Text extends ValueObject {}

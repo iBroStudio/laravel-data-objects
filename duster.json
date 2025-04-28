@@ -1,0 +1,17 @@
+{
+    "scripts": {
+        "lint": {
+            "phpstan": ["./vendor/bin/phpstan", "analyse", "--memory-limit=1G"],
+            "pest": ["./vendor/bin/pest"]
+        }
+    },
+    "include": [
+        "config",
+        "resources",
+        "src",
+        "tests"
+    ],
+    "exclude": [
+        "tests/Support"
+    ]
+}

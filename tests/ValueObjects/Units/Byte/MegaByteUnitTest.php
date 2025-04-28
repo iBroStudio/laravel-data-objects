@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\Units\Byte\MegaByteUnit;
 
 it('can instantiate MegaByteUnit', function () {

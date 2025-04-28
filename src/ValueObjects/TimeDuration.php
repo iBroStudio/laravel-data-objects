@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Carbon\CarbonInterval;
@@ -7,7 +9,7 @@ use IBroStudio\DataObjects\Enums\TimeUnitEnum;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class TimeDuration extends ValueObject
+final class TimeDuration extends ValueObject
 {
     private CarbonInterval $duration;
 
@@ -31,6 +33,19 @@ class TimeDuration extends ValueObject
         );
     }
 
+    public function format(bool $short = false): string
+    {
+        return $this->duration->forHumans(['short' => $short]);
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'value' => (float) $this->value,
+            'unit' => $this->unit,
+        ];
+    }
+
     private function fromFloat(float $value): void
     {
         $this->duration = (new CarbonInterval(null))->add($this->unit->value, $value);
@@ -43,18 +58,5 @@ class TimeDuration extends ValueObject
         } else {
             $this->duration = CarbonInterval::createFromFormat('i:s', $value);
         }
-    }
-
-    public function format(bool $short = false): string
-    {
-        return $this->duration->forHumans(['short' => $short]);
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'value' => (float) $this->value,
-            'unit' => $this->unit,
-        ];
     }
 }

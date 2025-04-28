@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Authentication;
 
 use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
@@ -8,7 +10,7 @@ use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class SshKey extends Authentication
+final class SshKey extends Authentication
 {
     public readonly EncryptableText $public;
 
@@ -39,6 +41,15 @@ class SshKey extends Authentication
         parent::__construct($this->user);
     }
 
+    public function toArray(): array
+    {
+        return [
+            'user' => $this->user,
+            'public' => $this->public->value,
+            'passphrase' => $this->passphrase?->value,
+        ];
+    }
+
     protected function validate(): void
     {
         parent::validate();
@@ -51,14 +62,5 @@ class SshKey extends Authentication
         if ($validator->fails()) {
             throw ValidationException::withMessages(['Ssh key is not valid.']);
         }
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'user' => $this->user,
-            'public' => $this->public->value,
-            'passphrase' => $this->passphrase?->value,
-        ];
     }
 }

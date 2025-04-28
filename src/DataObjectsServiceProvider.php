@@ -1,20 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects;
 
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class DataObjectsServiceProvider extends PackageServiceProvider
+final class DataObjectsServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('laravel-data-objects')
             ->hasConfigFile()

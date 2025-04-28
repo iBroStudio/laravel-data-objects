@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Illuminate\Support\Facades\Validator;
@@ -7,7 +9,7 @@ use Illuminate\Validation\ValidationException;
 use Spatie\Url\QueryParameterBag;
 use Spatie\Url\Url as ParsedUrl;
 
-class Url extends ValueObject
+final class Url extends ValueObject
 {
     private ParsedUrl $url;
 

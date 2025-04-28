@@ -1,0 +1,19 @@
+{
+  "name": "laravel-data-objects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky && husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iBroStudio/laravel-data-objects.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^15.5.1"
+  }
+}

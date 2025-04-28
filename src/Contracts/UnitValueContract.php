@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Contracts;
 
 interface UnitValueContract
 {
-    public function withUnit(): string;
-
     public static function unit(): ?string;
+
+    public function withUnit(): string;
 }

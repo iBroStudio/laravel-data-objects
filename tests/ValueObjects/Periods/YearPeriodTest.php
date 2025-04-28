@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\Periods\YearPeriod;
 
 it('can instantiate YearPeriod object value', function () {

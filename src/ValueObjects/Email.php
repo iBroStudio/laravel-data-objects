@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
+use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class Email extends ValueObject
+final class Email extends ValueObject
 {
     public readonly string $username;
 
@@ -15,7 +18,7 @@ class Email extends ValueObject
     {
         try {
             [$this->username, $this->domain] = explode('@', $value);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw ValidationException::withMessages(['Email is not valid.']);
         }
 

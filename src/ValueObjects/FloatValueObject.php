@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\RoundingMode;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -21,7 +24,7 @@ class FloatValueObject extends ValueObject
     {
         try {
             $this->bigDecimal = BigDecimal::of(Str::of($value)->toString());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw ValidationException::withMessages([$e->getMessage()]);
         }
 

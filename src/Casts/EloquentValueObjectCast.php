@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 
-class EloquentValueObjectCast implements CastsAttributes
+final class EloquentValueObjectCast implements CastsAttributes
 {
     public function __construct(
         /** @var class-string<\IBroStudio\DataObjects\ValueObjects\ValueObject> $valueObjectClass */

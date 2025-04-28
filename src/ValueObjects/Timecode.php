@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class Timecode extends ValueObject
+final class Timecode extends ValueObject
 {
     private int $hours;
 
@@ -50,6 +52,19 @@ class Timecode extends ValueObject
         return $this->seconds + ($this->minutes * 60) + ($this->hours * 3600);
     }
 
+    protected function validate(): void
+    {
+        parent::validate();
+
+        if ($this->seconds > 59) {
+            throw ValidationException::withMessages(['Seconds can not be greater than 59.']);
+        }
+
+        if ($this->minutes > 59) {
+            throw ValidationException::withMessages(['Minutes can not be greater than 59.']);
+        }
+    }
+
     private function fromFloat(float $value): void
     {
         $this->seconds = $value;
@@ -76,22 +91,9 @@ class Timecode extends ValueObject
                         $this->seconds = (float) $item;
                         break;
                     case 3:
-                        $this->seconds = $this->seconds + (float) "0.$item";
+                        $this->seconds = $this->seconds + (float) "0.{$item}";
                         break;
                 }
             });
-    }
-
-    protected function validate(): void
-    {
-        parent::validate();
-
-        if ($this->seconds > 59) {
-            throw ValidationException::withMessages(['Seconds can not be greater than 59.']);
-        }
-
-        if ($this->minutes > 59) {
-            throw ValidationException::withMessages(['Minutes can not be greater than 59.']);
-        }
     }
 }

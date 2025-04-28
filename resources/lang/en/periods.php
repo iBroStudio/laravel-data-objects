@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'year' => '{1} year|[2,*] :quantity years',
     'month' => '{1} month|[2,*] :quantity months',

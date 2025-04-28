@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Darsyn\IP\Version\Multi;
+use Exception;
 use Illuminate\Validation\ValidationException;
 
-class IpAddress extends ValueObject
+final class IpAddress extends ValueObject
 {
     public function __construct(mixed $value)
     {
         try {
             $multi = Multi::factory($value);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw ValidationException::withMessages([$e->getMessage()]);
         }
 

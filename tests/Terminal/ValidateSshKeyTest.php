@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Terminal\ValidateSshKey;
 use Illuminate\Support\Facades\File;
 

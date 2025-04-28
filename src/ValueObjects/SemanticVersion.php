@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Enums\SemanticVersionSegmentsEnum;
@@ -8,7 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 
-class SemanticVersion extends ValueObject
+final class SemanticVersion extends ValueObject
 {
     private int $major;
 

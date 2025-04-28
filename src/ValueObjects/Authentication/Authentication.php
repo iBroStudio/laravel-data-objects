@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects\Authentication;
 
+use Exception;
 use IBroStudio\DataObjects\Casts\EloquentAuthenticationValueObjectCast;
 use IBroStudio\DataObjects\Contracts\AuthenticationContract;
 use IBroStudio\DataObjects\ValueObjects\ValueObject;
@@ -15,12 +18,12 @@ abstract class Authentication extends ValueObject implements AuthenticationContr
             return $value;
         }
 
-        if (! is_subclass_of($class, Authentication::class)) {
+        if (! is_subclass_of($class, self::class)) {
             $class = match (array_keys($value)) {
                 ['username', 'password'] => BasicAuthentication::class,
                 ['key', 'secret'] => S3Authentication::class,
                 ['user', 'public'], ['user', 'public', 'passphrase'] => SshKey::class,
-                default => throw new \Exception('Unsupported'),
+                default => throw new Exception('Unsupported'),
             };
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Bakame\Laravel\Pdp\Facades\DomainParser;
@@ -7,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Pdp;
 
-class Domain extends ValueObject
+final class Domain extends ValueObject
 {
     public readonly string $subDomain;
 

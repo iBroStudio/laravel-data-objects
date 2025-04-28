@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use ByteUnits\Metric;
 use IBroStudio\DataObjects\Enums\ByteUnitEnum;
 use IBroStudio\DataObjects\ValueObjects\Units\Byte\ByteUnit;

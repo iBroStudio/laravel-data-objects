@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Formatters;
 
 use IBroStudio\DataObjects\Contracts\Formatter;
 use Illuminate\Support\Str;
 
-class NameFormatter implements Formatter
+final class NameFormatter implements Formatter
 {
     public static function format(string $value): string
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\ValueObjects\Units\Byte\PetaByteUnit;
 
 it('can instantiate PetaByteUnit', function () {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Formatters\LastNameFormatter;
@@ -7,7 +9,7 @@ use IBroStudio\DataObjects\Formatters\NameFormatter;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class FullName extends ValueObject
+final class FullName extends ValueObject
 {
     public readonly mixed $firstname;
 

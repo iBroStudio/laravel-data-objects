@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Brick\Math\BigInteger;
 use Brick\Math\RoundingMode;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -21,7 +24,7 @@ class IntegerValueObject extends ValueObject
     {
         try {
             $this->bigInteger = BigInteger::of(Str::of($value)->toString());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw ValidationException::withMessages([$e->getMessage()]);
         }
 

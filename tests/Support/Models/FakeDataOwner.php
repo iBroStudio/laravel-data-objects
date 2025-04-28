@@ -2,9 +2,12 @@
 
 namespace IBroStudio\DataObjects\Tests\Support\Models;
 
-use IBroStudio\DataObjects\Concerns\HasDataObjects;
+use IBroStudio\DataObjects\Concerns\HasConfig;
+use IBroStudio\DataObjects\Concerns\HasOwnClassAsProperty;
+use IBroStudio\DataObjects\Contracts\ModelConfigDTOContract;
 use IBroStudio\DataObjects\Tests\Support\Database\Factories\FakeDataOwnerFactory;
 use IBroStudio\DataObjects\Tests\Support\DTO\FakeDTO;
+use IBroStudio\DataObjects\Tests\Support\DTO\FakeModelConfigDTO;
 use IBroStudio\DataObjects\ValueObjects;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,10 +15,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class FakeDataOwner extends Model
 {
-    use HasDataObjects;
+    use HasConfig;
     use HasFactory;
+    use HasOwnClassAsProperty;
 
     public $timestamps = false;
+
+    protected $guarded = [];
 
     protected $casts = [
         'data_object' => FakeDTO::class,
@@ -51,5 +57,13 @@ class FakeDataOwner extends Model
     protected static function newFactory(): Factory
     {
         return FakeDataOwnerFactory::new();
+    }
+
+    protected function getConfig(): ModelConfigDTOContract
+    {
+        return FakeModelConfigDTO::from([
+            'configClass' => ValueObjects\ClassString::class,
+            'configCollection' => [ValueObjects\ClassString::class, ValueObjects\ClassString::class, ValueObjects\ClassString::class],
+        ]);
     }
 }
