@@ -1,10 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace IBroStudio\DataObjects\Tests;
 
+use Bakame\Laravel\Pdp;
+use IBroStudio\DataObjects\DataObjectsServiceProvider;
+use IBroStudio\DataObjects\Tests\Support\TestServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\File;
+use Mpociot\VatCalculator\VatCalculatorServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,14 +18,18 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'IBroStudio\\DataObjects\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            DataObjectsServiceProvider::class,
+            LaravelDataServiceProvider::class,
+            Pdp\ServiceProvider::class,
+            VatCalculatorServiceProvider::class,
+            TestServiceProvider::class,
         ];
     }
 
@@ -33,5 +42,9 @@ class TestCase extends Orchestra
             (include $migration->getRealPath())->up();
          }
          */
+
+        foreach (File::allFiles(__DIR__.'/Support/Database/Migrations') as $migration) {
+            (include $migration->getRealPath())->up();
+        }
     }
 }

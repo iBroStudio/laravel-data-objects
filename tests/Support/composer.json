@@ -1,0 +1,27 @@
+{
+    "name": "vendor_name/Support",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "yann",
+            "email": "email@example.com"
+        }
+    ],
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse -l 5 --memory-limit=1G database src tests",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "full-check": "composer format && composer test && composer analyse"
+    },
+    "autoload": {
+        "psr-4": {
+            "IBroStudio\\DataRepository\\": "src/",
+            "IBroStudio\\DataRepository\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "version": "0.18.19"
+}
