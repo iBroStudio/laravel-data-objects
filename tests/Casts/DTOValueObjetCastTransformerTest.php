@@ -12,7 +12,6 @@ it('can cast DTO property with value object', function () {
 
 })->throwsNoExceptions();
 
-
 it('can transform DTO property with value object', function () {
     $dto = FakeDTO::from(
         FakeDataOwner::factory()->raw()['data_object']

@@ -26,6 +26,12 @@ final class DTOValueObjetCastTransformer implements Cast, IterableItemCast, Tran
         return $this->castValue($property->type->iterableItemType, $value);
     }
 
+    public function transform(DataProperty $property, mixed $value, TransformationContext $context): mixed
+    {
+        /** @var ValueObject $value */
+        return $value->value;
+    }
+
     private function castValue(
         ?string $type,
         mixed $value,
@@ -40,11 +46,5 @@ final class DTOValueObjetCastTransformer implements Cast, IterableItemCast, Tran
             ),
             default => is_array($value) ? $type::from(...$value) : $type::from($value),
         };
-    }
-
-    public function transform(DataProperty $property, mixed $value, TransformationContext $context): mixed
-    {
-        /** @var ValueObject $value */
-        return $value->value;
     }
 }
