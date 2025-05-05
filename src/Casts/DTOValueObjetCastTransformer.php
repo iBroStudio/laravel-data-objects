@@ -11,8 +11,10 @@ use Spatie\LaravelData\Casts\IterableItemCast;
 use Spatie\LaravelData\Casts\Uncastable;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
+use Spatie\LaravelData\Support\Transformation\TransformationContext;
+use Spatie\LaravelData\Transformers\Transformer;
 
-final class DTOValueObjetCastTransformer implements Cast, IterableItemCast
+final class DTOValueObjetCastTransformer implements Cast, IterableItemCast, Transformer
 {
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): ValueObject|Uncastable
     {
@@ -38,5 +40,11 @@ final class DTOValueObjetCastTransformer implements Cast, IterableItemCast
             ),
             default => is_array($value) ? $type::from(...$value) : $type::from($value),
         };
+    }
+
+    public function transform(DataProperty $property, mixed $value, TransformationContext $context): mixed
+    {
+        /** @var ValueObject $value */
+        return $value->value;
     }
 }
