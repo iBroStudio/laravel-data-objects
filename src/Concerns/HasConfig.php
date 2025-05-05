@@ -10,7 +10,7 @@ trait HasConfig
 {
     public ModelConfigDTOContract $config;
 
-    abstract protected function getConfig(): ModelConfigDTOContract;
+    abstract protected function getConfig(array $properties = []): ModelConfigDTOContract;
 
     public function initializeHasConfig(): void
     {

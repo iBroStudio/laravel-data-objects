@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use IBroStudio\DataObjects\Enums\GitProvidersEnum;
 use IBroStudio\DataObjects\ValueObjects\GitSshUrl;
 use Illuminate\Validation\ValidationException;
 
@@ -43,4 +44,14 @@ it('can return GitSshUrl object value properties', function () {
         'repository' => 'laravel-data-repository',
         'provider' => 'github',
     ]);
+});
+
+it('can build a GitSshUrl object value', function () {
+    expect(
+        GitSshUrl::build(
+            GitProvidersEnum::GITHUB,
+            'iBroStudio',
+            'laravel-data-repository'
+        )
+    )->toBeInstanceOf(GitSshUrl::class);
 });

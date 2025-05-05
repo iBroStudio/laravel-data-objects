@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Tests\Support\DTO;
 
 use IBroStudio\DataObjects\ValueObjects;

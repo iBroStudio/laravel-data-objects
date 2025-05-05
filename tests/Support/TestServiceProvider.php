@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Tests\Support;
 
 use Faker\Factory;
@@ -27,7 +29,7 @@ class TestServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            abstract: Generator::class . ':' . config('app.faker_locale'),
+            abstract: Generator::class.':'.config('app.faker_locale'),
             concrete: Generator::class
         );
     }

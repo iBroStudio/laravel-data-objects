@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Tests\Support\Models;
 
 use IBroStudio\DataObjects\Concerns\HasConfig;
@@ -59,7 +61,7 @@ class FakeDataOwner extends Model
         return FakeDataOwnerFactory::new();
     }
 
-    protected function getConfig(): ModelConfigDTOContract
+    protected function getConfig(array $properties = []): ModelConfigDTOContract
     {
         return FakeModelConfigDTO::from([
             'configClass' => ValueObjects\ClassString::class,

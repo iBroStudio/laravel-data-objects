@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Tests\Support\Models;
 
 use IBroStudio\DataObjects\Tests\Support\Database\Factories\FakeChildModelFactory;
