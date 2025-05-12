@@ -1,10 +1,8 @@
 <?php
 
-namespace IBroStudio\DataObjects\Enums;
+declare(strict_types=1);
 
-use IBroStudio\DataObjects\ValueObjects\DependenciesJsonFile;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
+namespace IBroStudio\DataObjects\Enums;
 
 enum DependenciesJsonFilesEnum: string
 {

@@ -29,6 +29,13 @@ final class DependenciesJsonFile extends ValueObject
         }
     }
 
+    public static function collectionFromPath(string $path): Collection
+    {
+        return collect(DependenciesJsonFilesEnum::cases())
+            ->filter(fn ($file) => File::exists($path.'/'.$file->value))
+            ->map(fn ($file) => self::from($path.'/'.$file->value));
+    }
+
     public function version(?SemanticVersion $version = null): SemanticVersion
     {
         if (! is_null($version)
@@ -57,12 +64,5 @@ final class DependenciesJsonFile extends ValueObject
         if (! File::exists($this->value)) {
             throw ValidationException::withMessages(['File not found: '.$this->value]);
         }
-    }
-
-    public static function collectionFromPath(string $path): Collection
-    {
-        return collect(DependenciesJsonFilesEnum::cases())
-            ->filter(fn ($file) => File::exists($path . '/' . $file->value))
-            ->map(fn ($file) => self::from($path . '/' . $file->value));
     }
 }

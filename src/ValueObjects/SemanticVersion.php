@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects;
 
-use IBroStudio\DataObjects\Enums\SemanticVersionSegmentsEnum;
+use IBroStudio\DataObjects\Enums\SemanticVersionEnum;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
@@ -50,16 +50,16 @@ final class SemanticVersion extends ValueObject
         return Str::replace('.', '_', $this->value);
     }
 
-    public function increment(SemanticVersionSegmentsEnum $segment): static
+    public function increment(SemanticVersionEnum $segment): static
     {
         $incremented = clone $this;
 
-        if ($segment === SemanticVersionSegmentsEnum::PATCH) {
+        if ($segment === SemanticVersionEnum::PATCH) {
             $incremented->patch++;
-        } elseif ($segment === SemanticVersionSegmentsEnum::MINOR) {
+        } elseif ($segment === SemanticVersionEnum::MINOR) {
             $incremented->minor++;
             $incremented->patch = 0;
-        } elseif ($segment === SemanticVersionSegmentsEnum::MAJOR) {
+        } elseif ($segment === SemanticVersionEnum::MAJOR) {
             $incremented->major++;
             $incremented->minor = 0;
             $incremented->patch = 0;

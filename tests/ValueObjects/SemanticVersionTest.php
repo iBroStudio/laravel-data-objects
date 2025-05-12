@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use IBroStudio\DataObjects\Enums\SemanticVersionSegmentsEnum;
+use IBroStudio\DataObjects\Enums\SemanticVersionEnum;
 use IBroStudio\DataObjects\ValueObjects\SemanticVersion;
 use Illuminate\Validation\ValidationException;
 
@@ -43,7 +43,7 @@ it('can validate SemanticVersion object value', function () {
 it('can increment SemanticVersion major segment', function () {
     expect(
         SemanticVersion::from('1.0.0')
-            ->increment(SemanticVersionSegmentsEnum::MAJOR)
+            ->increment(SemanticVersionEnum::MAJOR)
             ->value
     )->toEqual('2.0.0');
 });
@@ -51,7 +51,7 @@ it('can increment SemanticVersion major segment', function () {
 it('can increment SemanticVersion minor segment', function () {
     expect(
         SemanticVersion::from('1.0.0')
-            ->increment(SemanticVersionSegmentsEnum::MINOR)
+            ->increment(SemanticVersionEnum::MINOR)
             ->value
     )->toEqual('1.1.0');
 });
@@ -59,7 +59,7 @@ it('can increment SemanticVersion minor segment', function () {
 it('can increment SemanticVersion patch segment', function () {
     expect(
         SemanticVersion::from('1.0.0')
-            ->increment(SemanticVersionSegmentsEnum::PATCH)
+            ->increment(SemanticVersionEnum::PATCH)
             ->value
     )->toEqual('1.0.1');
 });
@@ -67,7 +67,7 @@ it('can increment SemanticVersion patch segment', function () {
 it('can increment SemanticVersion with prefix', function () {
     expect(
         SemanticVersion::from('v.1.0.0')
-            ->increment(SemanticVersionSegmentsEnum::MAJOR)
+            ->increment(SemanticVersionEnum::MAJOR)
             ->value
     )->toEqual('v.2.0.0');
 });

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Enums;
 
-enum SemanticVersionSegmentsEnum: string
+enum SemanticVersionEnum: string
 {
     case MAJOR = 'major';
     case MINOR = 'minor';
