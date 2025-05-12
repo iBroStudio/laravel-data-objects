@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects;
 
+use IBroStudio\DataObjects\Enums\DependenciesJsonFilesEnum;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
 
@@ -55,5 +57,12 @@ final class DependenciesJsonFile extends ValueObject
         if (! File::exists($this->value)) {
             throw ValidationException::withMessages(['File not found: '.$this->value]);
         }
+    }
+
+    public static function collectionFromPath(string $path): Collection
+    {
+        return collect(DependenciesJsonFilesEnum::cases())
+            ->filter(fn ($file) => File::exists($path . '/' . $file->value))
+            ->map(fn ($file) => self::from($path . '/' . $file->value));
     }
 }
