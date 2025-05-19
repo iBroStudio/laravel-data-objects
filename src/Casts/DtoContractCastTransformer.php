@@ -24,7 +24,7 @@ final class DtoContractCastTransformer implements Cast, Transformer
         }
 
         /** @var class-string<Data> $class */
-        return $class::from($value);
+        return $class::from(Arr::except($value, ['dto_concrete_class']));
     }
 
     public function transform(DataProperty $property, mixed $value, TransformationContext $context): mixed

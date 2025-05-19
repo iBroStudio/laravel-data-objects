@@ -7,6 +7,7 @@ use IBroStudio\DataObjects\Exceptions\UnauthenticatableGBVatNumberException;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatedVatNumberException;
 use IBroStudio\DataObjects\ValueObjects\VatNumber;
 use Illuminate\Validation\ValidationException;
+use Mpociot\VatCalculator\Facades\VatCalculator;
 
 it('can instantiate VatNumber object value', function () {
     expect(VatNumber::from('FR54879706885'))
@@ -24,6 +25,20 @@ it('can validate VatNumber object value', function () {
 })->throws(ValidationException::class);
 
 it('can authenticated VatNumber object value', function () {
+    VatCalculator::expects('getVATDetails')
+        ->with('FR54879706885')
+        ->andReturn((object) [
+            'name' => 'iBroStudio',
+            'vatNumber' => 'FR54879706885',
+            'address' => '288 rue de Charenton 75012 PARIS',
+            'countryCode' => 'FR',
+            'valid' => true,
+        ]);
+
+    VatCalculator::expects('isValidVatNumberFormat')
+        ->with('FR54879706885')
+        ->andReturnTrue();
+
     expect(
         VatNumber::from('FR54879706885')->authenticate()
     )->toBeInstanceOf(VatNumberAuthenticationDTO::class);

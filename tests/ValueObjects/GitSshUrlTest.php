@@ -27,7 +27,7 @@ it('can return GitSshUrl object value', function () {
 it('can return GitSshUrl object value single property', function () {
     $url = GitSshUrl::from('git@github.com:iBroStudio/laravel-data-repository.git');
 
-    expect($url->provider)->toEqual('github')
+    expect($url->provider)->toEqual(GitProvidersEnum::GITHUB)
         ->and($url->username)->toEqual('iBroStudio')
         ->and($url->repository)->toEqual('laravel-data-repository');
 });
@@ -42,7 +42,7 @@ it('can return GitSshUrl object value properties', function () {
         'value' => $url,
         'username' => 'iBroStudio',
         'repository' => 'laravel-data-repository',
-        'provider' => 'github',
+        'provider' => GitProvidersEnum::GITHUB,
     ]);
 });
 
@@ -54,4 +54,11 @@ it('can build a GitSshUrl object value', function () {
             'laravel-data-repository'
         )
     )->toBeInstanceOf(GitSshUrl::class);
+});
+
+it('can return HTTP url', function () {
+    expect(
+        GitSshUrl::from('git@github.com:iBroStudio/laravel-data-repository.git')
+            ->toHttp()
+    )->toBe('https://github.com/iBroStudio/laravel-data-repository');
 });

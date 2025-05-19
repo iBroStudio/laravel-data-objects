@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 final class GitSshUrl extends ValueObject
 {
-    public readonly string $provider;
+    public readonly GitProvidersEnum $provider;
 
     public readonly string $username;
 
@@ -28,7 +28,7 @@ final class GitSshUrl extends ValueObject
             throw ValidationException::withMessages(['Git url is not valid.']);
         }
 
-        $this->provider = $matches['provider'];
+        $this->provider = GitProvidersEnum::tryFrom($matches['provider']);
         $this->username = $matches['username'];
         $this->repository = $matches['repository'];
 
@@ -48,5 +48,13 @@ final class GitSshUrl extends ValueObject
                 ->append('.git')
                 ->value()
         );
+    }
+
+    public function toHttp(): string
+    {
+        return $this->provider
+            ->getUrl()
+            ->withPath($this->username.'/'.$this->repository)
+            ->value();
     }
 }
