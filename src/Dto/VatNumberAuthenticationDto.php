@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IBroStudio\DataObjects\DTO;
+namespace IBroStudio\DataObjects\Dto;
 
 use Spatie\LaravelData\Data;
 use stdClass;
 
-class VatNumberAuthenticationDTO extends Data
+class VatNumberAuthenticationDto extends Data
 {
     public function __construct(
         public string $name,

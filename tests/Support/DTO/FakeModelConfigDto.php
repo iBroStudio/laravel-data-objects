@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects\Tests\Support\DTO;
 
 use IBroStudio\DataObjects\Attributes\EloquentCast;
-use IBroStudio\DataObjects\DTO\ModelConfigDTO;
+use IBroStudio\DataObjects\Dto\ModelConfigDto;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
 use Illuminate\Support\Collection;
 
-class FakeModelConfigDTO extends ModelConfigDTO
+class FakeModelConfigDto extends ModelConfigDto
 {
     public function __construct(
         #[EloquentCast]

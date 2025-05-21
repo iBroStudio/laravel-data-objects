@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IBroStudio\DataObjects\DTO;
+namespace IBroStudio\DataObjects\Dto;
 
 use IBroStudio\DataObjects\Attributes\EloquentCast;
 use IBroStudio\DataObjects\Contracts\ModelConfigDTOContract;
@@ -12,7 +12,7 @@ use ReflectionClass;
 use ReflectionProperty;
 use Spatie\LaravelData\Data;
 
-abstract class ModelConfigDTO extends Data implements ModelConfigDTOContract
+abstract class ModelConfigDto extends Data implements ModelConfigDTOContract
 {
     final public function getCasts(): Collection
     {
@@ -26,7 +26,7 @@ abstract class ModelConfigDTO extends Data implements ModelConfigDTOContract
                 /** @var ClassString $cast */
                 $cast = $property->getValue($this);
 
-                return [$property->getName() => $cast->value];
+                return property_exists($cast, 'value') ? [$property->getName() => $cast->value] : [];
             });
     }
 }

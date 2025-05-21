@@ -9,7 +9,7 @@ use IBroStudio\DataObjects\Concerns\HasOwnClassAsProperty;
 use IBroStudio\DataObjects\Contracts\ModelConfigDTOContract;
 use IBroStudio\DataObjects\Tests\Support\Database\Factories\FakeDataOwnerFactory;
 use IBroStudio\DataObjects\Tests\Support\DTO\FakeDTO;
-use IBroStudio\DataObjects\Tests\Support\DTO\FakeModelConfigDTO;
+use IBroStudio\DataObjects\Tests\Support\DTO\FakeModelConfigDto;
 use IBroStudio\DataObjects\ValueObjects;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,7 +63,7 @@ class FakeDataOwner extends Model
 
     protected function getConfig(array $properties = []): ModelConfigDTOContract
     {
-        return FakeModelConfigDTO::from([
+        return FakeModelConfigDto::from([
             'configClass' => ValueObjects\ClassString::class,
             'configCollection' => [ValueObjects\ClassString::class, ValueObjects\ClassString::class, ValueObjects\ClassString::class],
         ]);

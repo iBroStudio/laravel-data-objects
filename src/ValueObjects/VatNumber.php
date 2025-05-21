@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects;
 
-use IBroStudio\DataObjects\DTO\VatNumberAuthenticationDTO;
+use IBroStudio\DataObjects\Dto\VatNumberAuthenticationDto;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatableGBVatNumberException;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatedVatNumberException;
 use IBroStudio\DataObjects\Formatters\VatNumberFormatter;
@@ -33,7 +33,7 @@ final class VatNumber extends ValueObject
             ->value();
     }
 
-    public function authenticate(): VatNumberAuthenticationDTO
+    public function authenticate(): VatNumberAuthenticationDto
     {
         if ($this->country === 'GB') {
             throw new UnauthenticatableGBVatNumberException;
@@ -45,7 +45,7 @@ final class VatNumber extends ValueObject
             throw new UnauthenticatedVatNumberException;
         }
 
-        return VatNumberAuthenticationDTO::from($validate);
+        return VatNumberAuthenticationDto::from($validate);
     }
 
     protected function validate(): void

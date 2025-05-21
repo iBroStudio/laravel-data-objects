@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use IBroStudio\DataObjects\DTO\VatNumberAuthenticationDTO;
+use IBroStudio\DataObjects\Dto\VatNumberAuthenticationDto;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatableGBVatNumberException;
 use IBroStudio\DataObjects\Exceptions\UnauthenticatedVatNumberException;
 use IBroStudio\DataObjects\ValueObjects\VatNumber;
@@ -41,7 +41,7 @@ it('can authenticated VatNumber object value', function () {
 
     expect(
         VatNumber::from('FR54879706885')->authenticate()
-    )->toBeInstanceOf(VatNumberAuthenticationDTO::class);
+    )->toBeInstanceOf(VatNumberAuthenticationDto::class);
 });
 
 it('can not authenticated invalid VatNumber object value', function () {
