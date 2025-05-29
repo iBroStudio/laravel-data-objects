@@ -8,7 +8,7 @@ use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Support\Str;
 
-final class S3Authentication extends Authentication
+final class S3Authentication extends AuthenticationAbstract
 {
     public readonly EncryptableText $secret;
 
@@ -36,6 +36,14 @@ final class S3Authentication extends Authentication
         return [
             'key' => $this->key,
             'secret' => $this->secret->value,
+        ];
+    }
+
+    public function toDecryptedArray(): array
+    {
+        return [
+            'key' => $this->key,
+            'secret' => $this->secret->decrypt(),
         ];
     }
 

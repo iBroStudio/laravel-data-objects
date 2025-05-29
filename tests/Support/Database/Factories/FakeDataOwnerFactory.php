@@ -47,12 +47,12 @@ class FakeDataOwnerFactory extends Factory
                 'secret' => fake()->password(),
             ],
             'ssh_auth_vo' => [
-                'user' => fake()->userName(),
-                'public' => fake()->sshKey(),
+                'username' => getFakeSshPublicKey(),
+                'publicKey' => fake()->sshKey(),
             ],
             'auth_vo' => fake()->randomElement([
                 [
-                    'username' => fake()->userName(),
+                    'username' => getFakeSshPublicKey(),
                     'password' => fake()->password(),
                 ],
                 [
@@ -60,8 +60,8 @@ class FakeDataOwnerFactory extends Factory
                     'secret' => fake()->password(),
                 ],
                 [
-                    'user' => fake()->userName(),
-                    'public' => fake()->sshKey(),
+                    'username' => getFakeSshPublicKey(),
+                    'publicKey' => fake()->sshKey(),
                 ],
             ]),
         ];

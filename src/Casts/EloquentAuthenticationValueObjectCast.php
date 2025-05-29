@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Casts;
 
-use IBroStudio\DataObjects\ValueObjects\Authentication\Authentication;
+use IBroStudio\DataObjects\ValueObjects\Authentication\AuthenticationAbstract;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +22,7 @@ final class EloquentAuthenticationValueObjectCast implements CastsAttributes
             return null;
         }
 
-        return Authentication::getConcreteAuthenticationValueObject(
+        return AuthenticationAbstract::getConcreteAuthenticationValueObject(
             class: $this->authenticationValueObjectClass,
             value: json_decode($value, true),
         );
@@ -34,7 +34,7 @@ final class EloquentAuthenticationValueObjectCast implements CastsAttributes
             return null;
         }
 
-        return Authentication::getConcreteAuthenticationValueObject(
+        return AuthenticationAbstract::getConcreteAuthenticationValueObject(
             class: $this->authenticationValueObjectClass,
             value: $value,
         )->toJson();

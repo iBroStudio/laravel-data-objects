@@ -34,7 +34,7 @@ return [
             ValueObjects\Authentication\BasicAuthentication::class => DTOValueObjetCastTransformer::class,
             ValueObjects\Authentication\S3Authentication::class => DTOValueObjetCastTransformer::class,
             ValueObjects\Authentication\SshKey::class => DTOValueObjetCastTransformer::class,
-            ValueObjects\Authentication\Authentication::class => DTOValueObjetCastTransformer::class,
+            ValueObjects\Authentication\AuthenticationAbstract::class => DTOValueObjetCastTransformer::class,
         ],
 
         'transformers' => [

@@ -9,8 +9,9 @@ use IBroStudio\DataObjects\Casts\EloquentAuthenticationValueObjectCast;
 use IBroStudio\DataObjects\Contracts\AuthenticationContract;
 use IBroStudio\DataObjects\ValueObjects\ValueObject;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Support\Arr;
 
-abstract class Authentication extends ValueObject implements AuthenticationContract
+abstract class AuthenticationAbstract extends ValueObject implements AuthenticationContract
 {
     public static function getConcreteAuthenticationValueObject(string $class, array|AuthenticationContract $value): AuthenticationContract
     {
@@ -19,10 +20,10 @@ abstract class Authentication extends ValueObject implements AuthenticationContr
         }
 
         if (! is_subclass_of($class, self::class)) {
-            $class = match (array_keys($value)) {
-                ['username', 'password'] => BasicAuthentication::class,
-                ['key', 'secret'] => S3Authentication::class,
-                ['user', 'public'], ['user', 'public', 'passphrase'] => SshKey::class,
+            $class = match (true) {
+                Arr::hasAll($value, ['username', 'password']) => BasicAuthentication::class,
+                Arr::hasAll($value, ['key', 'secret']) => S3Authentication::class,
+                Arr::hasAny($value, ['publicKey', 'privateKey']) => SshKey::class,
                 default => throw new Exception('Unsupported'),
             };
         }

@@ -37,11 +37,13 @@ final class Timecode extends ValueObject
                     Str::of(number_format($this->seconds))
                         ->before('.')
                         ->padLeft(2, '0')
+                        ->value()
                 )
                 ->append('.')
                 ->append(
                     Str::of(number_format($this->seconds, 6))
                         ->after('.')
+                        ->value()
                 )
                 ->__toString()
         );

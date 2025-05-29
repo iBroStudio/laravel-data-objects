@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects;
 
-use IBroStudio\DataObjects\Rules\IsEncryptedRule;
+use Closure;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -39,7 +40,19 @@ final class EncryptableText extends ValueObject
     private static function isEncrypted(string $value): bool
     {
         $validator = Validator::make(['value' => $value], [
-            'value' => new IsEncryptedRule,
+            'value' => function (string $attribute, mixed $value, Closure $fail) {
+
+                try {
+                    Crypt::decryptString($value);
+                    $isEncrypted = true;
+                } catch (DecryptException $e) {
+                    $isEncrypted = false;
+                }
+
+                if (! $isEncrypted) {
+                    $fail('The :attribute must be encrypted.');
+                }
+            },
         ]);
 
         return ! $validator->fails();

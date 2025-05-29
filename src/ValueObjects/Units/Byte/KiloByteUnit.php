@@ -15,7 +15,7 @@ final class KiloByteUnit extends ByteUnit implements UnitValueContract
         return parent::from(Metric::kilobytes(current($values)));
     }
 
-    public static function unit(): ?string
+    public static function unit(): string
     {
         return ByteUnitEnum::kB->getLabel();
     }

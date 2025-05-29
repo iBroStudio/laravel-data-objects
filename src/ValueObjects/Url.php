@@ -6,7 +6,6 @@ namespace IBroStudio\DataObjects\ValueObjects;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Spatie\Url\QueryParameterBag;
 use Spatie\Url\Url as ParsedUrl;
 
 final class Url extends ValueObject
@@ -177,7 +176,7 @@ final class Url extends ValueObject
         return $this->url->withBasename($basename);
     }
 
-    public function withQuery(QueryParameterBag $query): ParsedUrl
+    public function withQuery(string $query): ParsedUrl
     {
         return $this->url->withQuery($query);
     }

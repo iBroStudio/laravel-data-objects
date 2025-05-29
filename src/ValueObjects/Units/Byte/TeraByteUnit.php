@@ -15,7 +15,7 @@ final class TeraByteUnit extends ByteUnit implements UnitValueContract
         return parent::from(Metric::terabytes(current($values)));
     }
 
-    public static function unit(): ?string
+    public static function unit(): string
     {
         return ByteUnitEnum::TB->getLabel();
     }

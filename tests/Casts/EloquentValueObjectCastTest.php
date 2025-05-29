@@ -120,5 +120,5 @@ it('can cast model property with value object', function () {
         ->and(
             $model->auth_vo
         )
-        ->toBeInstanceOf(ValueObjects\Authentication\Authentication::class);
+        ->toBeInstanceOf(ValueObjects\Authentication\AuthenticationAbstract::class);
 });

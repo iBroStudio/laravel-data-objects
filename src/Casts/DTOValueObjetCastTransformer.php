@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Casts;
 
-use IBroStudio\DataObjects\ValueObjects\Authentication\Authentication;
+use IBroStudio\DataObjects\ValueObjects\Authentication\AuthenticationAbstract;
 use IBroStudio\DataObjects\ValueObjects\ValueObject;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Casts\IterableItemCast;
@@ -40,8 +40,8 @@ final class DTOValueObjetCastTransformer implements Cast, IterableItemCast, Tran
         /** @var class-string<ValueObject>|null $type */
         return match ($type) {
             null => Uncastable::create(),
-            Authentication::class => Authentication::getConcreteAuthenticationValueObject(
-                class: Authentication::class,
+            AuthenticationAbstract::class => AuthenticationAbstract::getConcreteAuthenticationValueObject(
+                class: AuthenticationAbstract::class,
                 value: $value,
             ),
             default => is_array($value) ? $type::from(...$value) : $type::from($value),

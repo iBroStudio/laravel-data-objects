@@ -15,7 +15,7 @@ final class GigaByteUnit extends ByteUnit implements UnitValueContract
         return parent::from(Metric::gigabytes(current($values)));
     }
 
-    public static function unit(): ?string
+    public static function unit(): string
     {
         return ByteUnitEnum::GB->getLabel();
     }

@@ -15,7 +15,7 @@ final class MegaByteUnit extends ByteUnit implements UnitValueContract
         return parent::from(Metric::megabytes(current($values)));
     }
 
-    public static function unit(): ?string
+    public static function unit(): string
     {
         return ByteUnitEnum::MB->getLabel();
     }

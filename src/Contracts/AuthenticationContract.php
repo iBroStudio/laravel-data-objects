@@ -10,5 +10,7 @@ interface AuthenticationContract
 
     public function toArray(): array;
 
+    public function toDecryptedArray(): array;
+
     public function toJson(): false|string;
 }

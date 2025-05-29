@@ -9,7 +9,7 @@ use IBroStudio\DataObjects\ValueObjects\IntegerValueObject;
 
 final class EmailUnit extends IntegerValueObject implements UnitValueContract
 {
-    public static function unit(): ?string
+    public static function unit(): string
     {
         return trans_choice(
             key: 'data-objects::units.email',

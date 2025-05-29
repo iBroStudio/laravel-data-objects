@@ -23,5 +23,5 @@
             "IBroStudio\\DataRepository\\Database\\Factories\\": "database/factories/"
         }
     },
-    "version": "8.13.42"
+    "version": "9.20.50"
 }

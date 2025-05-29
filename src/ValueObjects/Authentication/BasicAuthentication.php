@@ -8,7 +8,7 @@ use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Support\Str;
 
-final class BasicAuthentication extends Authentication
+final class BasicAuthentication extends AuthenticationAbstract
 {
     public readonly EncryptableText $password;
 
@@ -36,6 +36,14 @@ final class BasicAuthentication extends Authentication
         return [
             'username' => $this->username,
             'password' => $this->password->value,
+        ];
+    }
+
+    public function toDecryptedArray(): array
+    {
+        return [
+            'username' => $this->username,
+            'password' => $this->password->decrypt(),
         ];
     }
 

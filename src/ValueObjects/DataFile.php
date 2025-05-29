@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Enums\GitProvidersEnum;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-final class GitSshUrl extends ValueObject
+final class DataFile extends ValueObject
 {
     public readonly GitProvidersEnum $provider;
 
@@ -33,27 +32,5 @@ final class GitSshUrl extends ValueObject
         $this->repository = $matches['repository'];
 
         parent::__construct($value);
-    }
-
-    public static function build(GitProvidersEnum $provider, string $username, string $repository): static
-    {
-        return self::from(
-            Str::of('git@')
-                ->append($provider->getDomain())
-                ->append(':')
-                ->append($username)
-                ->append('/')
-                ->append($repository)
-                ->append('.git')
-                ->value()
-        );
-    }
-
-    public function toHttp(): string
-    {
-        return $this->provider
-            ->getUrl()
-            ->withPath($this->username.'/'.$this->repository)
-            ->value();
     }
 }
