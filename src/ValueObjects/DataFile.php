@@ -23,14 +23,14 @@ final class DataFile extends ValueObject
     private ?string $content = null;
 
     public function __construct(
-        string                        $file,
-        public readonly string        $basename,
-        public readonly string        $dirname,
-        public readonly string        $extension,
-        public readonly string        $filename,
-        public Disk|array             $disk,
+        string $file,
+        public readonly string $basename,
+        public readonly string $dirname,
+        public readonly string $extension,
+        public readonly string $filename,
+        public Disk|array $disk,
         public ?FileHandlerDriverEnum $fileHandlerDriverEnum,
-        private readonly ?array       $stubVars = null)
+        private readonly ?array $stubVars = null)
     {
         if (! $disk instanceof Disk) {
             $this->disk = Disk::from(...$disk);
