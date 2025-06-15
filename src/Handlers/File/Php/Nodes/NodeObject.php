@@ -10,14 +10,14 @@ use IBroStudio\DataObjects\ValueObjects\ClassString;
 use Illuminate\Support\Arr;
 use PhpParser\Node;
 use PhpParser\Node\ArrayItem;
-use PhpParser\Node\Name;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Expr\ConstFetch;
-use PhpParser\Node\Scalar\String_;
-use PhpParser\Node\Scalar\Int_;
-use PhpParser\Node\Scalar\Float_;
 use PhpParser\Node\Expr\ClassConstFetch;
+use PhpParser\Node\Expr\ConstFetch;
+use PhpParser\Node\Name;
+use PhpParser\Node\Name\FullyQualified;
+use PhpParser\Node\Scalar\Float_;
+use PhpParser\Node\Scalar\Int_;
+use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\ClassMethod;
 
 class NodeObject implements FileHandlerNodeContract

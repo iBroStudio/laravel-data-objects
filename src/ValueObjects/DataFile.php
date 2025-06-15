@@ -6,6 +6,7 @@ namespace IBroStudio\DataObjects\ValueObjects;
 
 use Carbon\CarbonImmutable;
 use IBroStudio\DataObjects\Concerns\HasFileHandler;
+use IBroStudio\DataObjects\Enums\DiskDriverEnum;
 use IBroStudio\DataObjects\Enums\FileHandlerDriverEnum;
 use IBroStudio\DataObjects\ValueObjects\Units\Byte\ByteUnit;
 use Illuminate\Support\Arr;
@@ -48,6 +49,14 @@ final class DataFile extends ValueObject
         $values = array_merge($values, pathinfo($values['file']));
 
         $values = Arr::add($values, 'fileHandlerDriverEnum', FileHandlerDriverEnum::tryFrom($values['extension']));
+
+        if (! Arr::has($values, 'disk.driver')) {
+            data_set($values, 'disk.driver', DiskDriverEnum::Local);
+        }
+
+        if (Arr::has($values, 'directory')) {
+            data_set($values, 'disk.root', Arr::pull($values, 'directory'));
+        }
 
         return new self(...$values);
     }

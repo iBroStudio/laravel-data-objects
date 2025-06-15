@@ -24,9 +24,6 @@ function data_file($file): DataFile
 {
     return DataFile::from(
         file: $file,
-        disk: [
-            'driver' => DiskDriverEnum::Local,
-            'root' => __DIR__.'/Support',
-        ]
+        directory: __DIR__.'/Support',
     );
 }
