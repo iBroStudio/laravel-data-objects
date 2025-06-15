@@ -32,8 +32,8 @@ function stub_file(string $file, ?array $replaces = null): DataFile
     return DataFile::from(
         file: $file,
         directory: __DIR__.'/Support',
-        replaces: $replaces ?? [
-            '{{ namespace }}' => 'ModuleNamespace',
+        stubVars: $replaces ?? [
+            'namespace' => 'ModuleNamespace',
         ]
     );
 }

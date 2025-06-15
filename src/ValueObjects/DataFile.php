@@ -23,14 +23,14 @@ final class DataFile extends ValueObject
     private ?string $content = null;
 
     public function __construct(
-        string $file,
-        public readonly string $basename,
-        public readonly string $dirname,
-        public readonly string $extension,
-        public readonly string $filename,
-        public Disk|array $disk,
+        string                        $file,
+        public readonly string        $basename,
+        public readonly string        $dirname,
+        public readonly string        $extension,
+        public readonly string        $filename,
+        public Disk|array             $disk,
         public ?FileHandlerDriverEnum $fileHandlerDriverEnum,
-        private readonly ?array $replaces = null)
+        private readonly ?array       $stubVars = null)
     {
         if (! $disk instanceof Disk) {
             $this->disk = Disk::from(...$disk);
@@ -70,9 +70,9 @@ final class DataFile extends ValueObject
 
         if (is_null($this->content) || $refresh) {
             $this->content = Str::of($this->disk->filesystem->get($this->value))
-                ->when($this->replaces, fn (Stringable $content) => $content->replace(
-                    search: array_keys($this->replaces),
-                    replace: array_values($this->replaces)
+                ->when($this->stubVars, fn (Stringable $content) => $content->replace(
+                    search: Arr::map(array_keys($this->stubVars), fn (string $key) => Str::wrap($key, before: '{{ ', after: ' }}')),
+                    replace: array_values($this->stubVars)
                 ))
                 ->value();
         }
