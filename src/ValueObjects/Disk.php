@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IBroStudio\DataObjects\ValueObjects\Disks;
+namespace IBroStudio\DataObjects\ValueObjects;
 
 use Exception;
 use IBroStudio\DataObjects\Contracts\DiskContract;
@@ -12,11 +12,10 @@ use IBroStudio\DataObjects\Dto\Disks\LocalDiskDto;
 use IBroStudio\DataObjects\Dto\Disks\S3DiskDto;
 use IBroStudio\DataObjects\Dto\Disks\SftpDiskDto;
 use IBroStudio\DataObjects\Enums\DiskDriverEnum;
-use IBroStudio\DataObjects\ValueObjects\ValueObject;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 
-class Disk extends ValueObject implements DiskContract
+final class Disk extends ValueObject implements DiskContract
 {
     public Filesystem $filesystem;
 
@@ -31,19 +30,19 @@ class Disk extends ValueObject implements DiskContract
 
     public static function from(mixed ...$values): static
     {
-        $values = current($values);
-
         if (! $values['driver'] instanceof DiskDriverEnum) {
             $values['driver'] = DiskDriverEnum::tryFrom($values['driver']);
         }
 
-        return match ($values['driver']) {
-            DiskDriverEnum::Local => new LocalDisk(LocalDiskDto::from($values)),
-            DiskDriverEnum::Ftp => new FtpDisk(FtpDiskDto::from($values)),
-            DiskDriverEnum::Sftp => new SftpDisk(SftpDiskDto::from($values)),
-            DiskDriverEnum::S3 => new S3Disk(S3DiskDto::from($values)),
+        $properties = match ($values['driver']) {
+            DiskDriverEnum::Local => LocalDiskDto::from($values),
+            DiskDriverEnum::Ftp => FtpDiskDto::from($values),
+            DiskDriverEnum::Sftp => SftpDiskDto::from($values),
+            DiskDriverEnum::S3 => S3DiskDto::from($values),
             default => throw new Exception('Unknown driver'),
         };
+
+        return new self($properties);
     }
 
     public function toArray(): array

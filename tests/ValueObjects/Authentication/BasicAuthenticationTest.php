@@ -57,7 +57,7 @@ it('can return BasicAuthentication object value properties', function () {
     );
 
     expect(
-        $basicAuthentication->properties()
+        $basicAuthentication->values()
     )->toMatchArray([
         'value' => $basicAuthentication->value,
         'username' => $basicAuthentication->username,

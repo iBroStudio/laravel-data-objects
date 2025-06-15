@@ -37,7 +37,7 @@ it('can return Phone object value properties', function () {
 
     expect(
         Phone::from($phone)
-            ->properties()
+            ->values()
     )->toMatchArray([
         'value' => $phone,
         'national' => '01 02 03 04 05',

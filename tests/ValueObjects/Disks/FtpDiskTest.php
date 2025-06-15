@@ -3,16 +3,15 @@
 declare(strict_types=1);
 
 use IBroStudio\DataObjects\Enums\DiskDriverEnum;
-use IBroStudio\DataObjects\ValueObjects\Disks\Disk;
-use IBroStudio\DataObjects\ValueObjects\Disks\FtpDisk;
+use IBroStudio\DataObjects\ValueObjects\Disk;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 it('can instantiate Ftp Disk object value', function () {
-    expect(Disk::from(ftp_properties()))->toBeInstanceOf(FtpDisk::class);
+    expect(Disk::from(...ftp_properties()))->toBeInstanceOf(Disk::class);
 });
 
 it('can return Ftp Disk Filesystem', function () {
-    $disk = Disk::from(ftp_properties());
+    $disk = Disk::from(...ftp_properties());
 
     expect($disk->filesystem)->toBeInstanceOf(Filesystem::class);
 });

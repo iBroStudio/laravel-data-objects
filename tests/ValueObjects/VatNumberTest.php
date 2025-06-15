@@ -64,7 +64,7 @@ it('can return VatNumber object value properties', function () {
 
     expect(
         VatNumber::from($vat)
-            ->properties()
+            ->values()
     )->toMatchArray([
         'value' => $vat,
         'number' => '54879706885',

@@ -29,7 +29,7 @@ it('can return Domain object value single property', function () {
 it('can return Domain object value properties', function () {
     $fullname = Domain::from('www.ibro.studio');
 
-    expect($fullname->properties())->toMatchArray([
+    expect($fullname->values())->toMatchArray([
         'value' => 'www.ibro.studio',
         'subDomain' => 'www',
         'name' => 'ibro',

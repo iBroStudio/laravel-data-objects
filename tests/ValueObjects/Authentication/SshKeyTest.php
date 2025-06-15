@@ -91,7 +91,7 @@ it('can return SshKey object value properties', function () {
     );
 
     expect(
-        $ssh_key->properties()
+        $ssh_key->values()
     )->toMatchArray([
         'value' => $username,
         'username' => $username,

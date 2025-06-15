@@ -1,0 +1,9 @@
+<?php
+
+class FakeClass
+{
+    protected function testMethod(): bool
+    {
+        return true;
+    }
+}

@@ -37,7 +37,7 @@ it('can return GitSshUrl object value properties', function () {
 
     expect(
         GitSshUrl::from($url)
-            ->properties()
+            ->values()
     )->toMatchArray([
         'value' => $url,
         'username' => 'iBroStudio',

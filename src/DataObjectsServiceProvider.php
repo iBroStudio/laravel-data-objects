@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects;
 
+use IBroStudio\DataObjects\Managers\FileHandlerManager;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -16,6 +18,14 @@ final class DataObjectsServiceProvider extends PackageServiceProvider
             ->name('laravel-data-objects')
             ->hasConfigFile()
             ->hasTranslations();
+    }
+
+    public function packageRegistered()
+    {
+        $this->app->singleton(
+            abstract: FileHandlerManager::class,
+            concrete: fn (Application $app) => new FileHandlerManager($app),
+        );
     }
 
     public function packageBooted(): void

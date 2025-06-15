@@ -34,7 +34,7 @@ it('can return Email object value properties', function () {
     $email = 'hello@ibro.studio';
 
     expect(
-        Email::from('hello@ibro.studio')->properties()
+        Email::from('hello@ibro.studio')->values()
     )->toMatchArray([
         'value' => $email,
         'username' => 'hello',

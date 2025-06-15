@@ -57,7 +57,7 @@ it('can return S3Authentication object value properties', function () {
     );
 
     expect(
-        $S3Authentication->properties()
+        $S3Authentication->values()
     )->toMatchArray([
         'value' => $S3Authentication->value,
         'key' => $S3Authentication->key,

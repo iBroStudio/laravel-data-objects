@@ -1,0 +1,15 @@
+<?php
+
+use IBroStudio\ModuleHelper\Install\InstallManager;
+use ModuleNamespace\Hook\HookManager;
+
+final class Installer extends InstallManager
+{
+    /**
+     * Hooks to register
+     */
+    protected function hooks(): array
+    {
+        return HookManager::registry();
+    }
+}

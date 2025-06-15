@@ -3,16 +3,15 @@
 declare(strict_types=1);
 
 use IBroStudio\DataObjects\Enums\DiskDriverEnum;
-use IBroStudio\DataObjects\ValueObjects\Disks\Disk;
-use IBroStudio\DataObjects\ValueObjects\Disks\LocalDisk;
+use IBroStudio\DataObjects\ValueObjects\Disk;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 it('can instantiate Local Disk object value', function () {
-    expect(Disk::from(local_properties()))->toBeInstanceOf(LocalDisk::class);
+    expect(Disk::from(...local_properties()))->toBeInstanceOf(Disk::class);
 });
 
 it('can return Local Disk Filesystem', function () {
-    $disk = Disk::from(local_properties());
+    $disk = Disk::from(...local_properties());
 
     expect($disk->filesystem)->toBeInstanceOf(Filesystem::class);
 });

@@ -25,7 +25,7 @@ it('can return FullName object value single property', function () {
 it('can return FullName object value properties', function () {
     $fullname = FullName::from('Yann Roger Freppel');
 
-    expect($fullname->properties())->toMatchArray([
+    expect($fullname->values())->toMatchArray([
         'value' => 'Yann Roger FREPPEL',
         'firstname' => 'Yann Roger',
         'lastname' => 'FREPPEL',
