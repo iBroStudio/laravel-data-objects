@@ -10,6 +10,8 @@ use IBroStudio\DataObjects\Enums\DiskDriverEnum;
 use IBroStudio\DataObjects\Enums\FileHandlerDriverEnum;
 use IBroStudio\DataObjects\ValueObjects\Units\Byte\ByteUnit;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use PHPUnit\Runner\FileDoesNotExistException;
 
 final class DataFile extends ValueObject
@@ -27,7 +29,8 @@ final class DataFile extends ValueObject
         public readonly string $extension,
         public readonly string $filename,
         public Disk|array $disk,
-        public ?FileHandlerDriverEnum $fileHandlerDriverEnum)
+        public ?FileHandlerDriverEnum $fileHandlerDriverEnum,
+        private readonly ?array $replaces = null)
     {
         if (! $disk instanceof Disk) {
             $this->disk = Disk::from(...$disk);
@@ -66,7 +69,12 @@ final class DataFile extends ValueObject
         $this->throwsIfDoesNotExist();
 
         if (is_null($this->content) || $refresh) {
-            $this->content = $this->disk->filesystem->get($this->value);
+            $this->content = Str::of($this->disk->filesystem->get($this->value))
+                ->when($this->replaces, fn (Stringable $content) => $content->replace(
+                    search: array_keys($this->replaces),
+                    replace: array_values($this->replaces)
+                ))
+                ->value();
         }
 
         return $this->content;

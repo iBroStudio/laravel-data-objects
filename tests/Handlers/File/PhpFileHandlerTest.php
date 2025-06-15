@@ -76,7 +76,7 @@ it('can save file', function () {
 
 it('can add and remove data to a file from a stub', function () {
     $file = data_file('DataFile/FakeClass.php');
-    $stub = data_file('Stubs/methods.installer.hooks.stub');
+    $stub = stub_file('Stubs/methods.installer.hooks.stub');
 
     expect($file->methods()->all()->has('hooks'))->toBeFalse()
         ->and($file->imports()->all()->has('IBroStudio\ModuleHelper\Install\InstallManager'))->toBeFalse()

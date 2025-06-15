@@ -5,7 +5,7 @@ declare(strict_types=1);
 pest()->group('data-file');
 
 it('can return all imports from a class', function () {
-    $file = data_file('Stubs/methods.installer.hooks.stub');
+    $file = stub_file('Stubs/methods.installer.hooks.stub');
     $imports = $file->imports()->all();
 
     expect($imports)->toBeCollection()
@@ -15,7 +15,7 @@ it('can return all imports from a class', function () {
 
 it('can add an import to a class', function () {
     $file = data_file('DataFile/FakeClass.php');
-    $stub = data_file('Stubs/methods.installer.hooks.stub');
+    $stub = stub_file('Stubs/methods.installer.hooks.stub');
     $imports = $file->imports();
 
     expect($imports->all()->has('IBroStudio\ModuleHelper\Install\InstallManager'))->toBeFalse()

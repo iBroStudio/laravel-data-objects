@@ -7,7 +7,7 @@ use IBroStudio\DataObjects\Handlers\File\Php\Nodes\MethodNode;
 pest()->group('data-file');
 
 it('can return all methods from a class', function () {
-    $file = data_file('Stubs/methods.installer.hooks.stub');
+    $file = stub_file('Stubs/methods.installer.hooks.stub');
     $methods = $file->methods()->all();
 
     expect($methods)->toBeCollection()
@@ -15,14 +15,14 @@ it('can return all methods from a class', function () {
 });
 
 it('can return a method from a class', function () {
-    $file = data_file('Stubs/methods.installer.hooks.stub');
+    $file = stub_file('Stubs/methods.installer.hooks.stub');
 
     expect($file->methods()->find('hooks'))->toBeInstanceOf(MethodNode::class);
 });
 
 it('can add a method to a class', function () {
     $file = data_file('DataFile/FakeClass.php');
-    $stub = data_file('Stubs/methods.installer.hooks.stub');
+    $stub = stub_file('Stubs/methods.installer.hooks.stub');
 
     expect($file->methods()->all()->has('hooks'))->toBeFalse();
 

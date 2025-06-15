@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use IBroStudio\DataObjects\Enums\DiskDriverEnum;
 use IBroStudio\DataObjects\Tests\TestCase;
 use IBroStudio\DataObjects\ValueObjects\DataFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,10 +19,21 @@ function getFakeSshPrivateKey(): string
     return File::get(__DIR__.'/Support/Ssh/test');
 }
 
-function data_file($file): DataFile
+function data_file(string $file): DataFile
 {
     return DataFile::from(
         file: $file,
         directory: __DIR__.'/Support',
+    );
+}
+
+function stub_file(string $file, ?array $replaces = null): DataFile
+{
+    return DataFile::from(
+        file: $file,
+        directory: __DIR__.'/Support',
+        replaces: $replaces ?? [
+            '{{ namespace }}' => 'ModuleNamespace',
+        ]
     );
 }
