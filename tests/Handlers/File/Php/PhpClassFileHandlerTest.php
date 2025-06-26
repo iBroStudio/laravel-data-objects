@@ -142,6 +142,14 @@ it('can replace a value in a nested array', function () {
     $file->save();
 });
 
+it('can empty an array', function () {
+    $file = data_file('DataFile/FakeClass.php');
+    $property = $file->properties()->find('indexedArrayProp')
+        ->replaceBy([]);
+
+    expect($property->value())->toBe([]);
+});
+
 it('can add an item to an array', function () {
     $file = data_file('DataFile/FakeClass.php');
     $property = $file->properties()->find('arrayProp')
@@ -182,4 +190,23 @@ it('can add a value to a nested array', function () {
 
     $property->replaceBy(['nested-key-2' => 'nested-value-2']);
     $file->save();
+});
+
+it('can add a value with class string index', function () {
+    $file = data_file('DataFile/FakeClass.php');
+    $property = $file->properties()->find('classStringArrayIndexProp')
+        ->replaceBy([])
+        ->add([NodeObject::class => []]);
+
+    expect($property->value())->toMatchArray([NodeObject::class => []]);
+
+    $property->replaceBy([])
+        ->add([NodeObject::class => ['test-1' => 'value-1']]);
+
+    expect($property->value())->toMatchArray([NodeObject::class => ['test-1' => 'value-1']]);
+
+    $property->replaceBy([])
+        ->add([NodeObject::class => [CarbonImmutable::class => 'value-2']]);
+
+    expect($property->value())->toMatchArray([NodeObject::class => [CarbonImmutable::class => 'value-2']]);
 });

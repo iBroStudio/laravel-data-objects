@@ -21,7 +21,7 @@ class ArrayNode extends NodeObject implements FileHandlerNodeContract
         return collect($node->items)
             ->mapWithKeys(function (mixed $item, int|string $key) {
                 return [
-                    (isset($item->key) ? parent::getValue($item->key) : $key) => ArrayItemNode::getValue($item),
+                    (isset($item->key) ? parent::getValue($item->key) : $key) => is_array($item) ? $item : ArrayItemNode::getValue($item),
                 ];
             })
             ->toArray();

@@ -73,7 +73,7 @@ class NodeObject implements FileHandlerNodeContract
 
             'array' => Arr::map($value, function (mixed $item, int|string $key) {
 
-                return new ArrayItem(
+                return is_array($item) ? $item : new ArrayItem(
                     self::wrap($item),
                     is_string($key) ? new String_($key) : null
                 );
