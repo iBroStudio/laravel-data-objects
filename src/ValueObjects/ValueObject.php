@@ -26,6 +26,12 @@ abstract class ValueObject implements Arrayable, Castable
         $this->validate();
     }
 
+    public static function make(): static
+    {
+        // @phpstan-ignore-next-line
+        return new static();
+    }
+
     public static function from(mixed ...$values): static
     {
         // @phpstan-ignore-next-line

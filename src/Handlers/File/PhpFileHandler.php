@@ -20,6 +20,7 @@ use IBroStudio\DataObjects\Handlers\File\Php\Nodes\ImportNode;
 use IBroStudio\DataObjects\Handlers\File\Php\Nodes\MethodNode;
 use IBroStudio\DataObjects\Handlers\File\Php\PropertyHandler;
 use IBroStudio\DataObjects\ValueObjects\DataFile;
+use IBroStudio\DataObjects\ValueObjects\TempFolder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
 use PhpParser\Node\Stmt;
@@ -135,7 +136,7 @@ final class PhpFileHandler implements FileHandlerContract
 
     public function save(): bool
     {
-        $tmp = new TemporaryDirectory()->deleteWhenDestroyed()->create();
+        $tmp = TempFolder::make();
 
         File::put($tmp->path($this->dataFile->value), $this->print());
 
