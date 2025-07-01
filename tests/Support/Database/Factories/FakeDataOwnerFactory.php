@@ -6,6 +6,7 @@ namespace IBroStudio\DataObjects\Tests\Support\Database\Factories;
 
 use IBroStudio\DataObjects\Tests\Support\Models\FakeDataOwner;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
+use IBroStudio\DataObjects\ValueObjects\TempFolder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FakeDataOwnerFactory extends Factory
@@ -33,6 +34,7 @@ class FakeDataOwnerFactory extends Factory
             'name_vo' => fake()->name,
             'phone_vo' => fake()->e164PhoneNumber,
             'version_vo' => fake()->semver(),
+            'tmp_folder_vo' => TempFolder::make(),
             'timecode_vo' => fake()->time('H:i:s:v'),
             'timeduration_vo' => fake()->time('H:i:s'),
             'url_vo' => fake()->url,

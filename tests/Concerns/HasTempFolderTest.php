@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Tests\Support\Models\FakeChildModel;
 use IBroStudio\DataObjects\ValueObjects\TempFolder;
 

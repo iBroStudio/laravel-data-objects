@@ -29,6 +29,7 @@ class FakeDTO extends Data
         public ValueObjects\Name $name_vo,
         public ValueObjects\Phone $phone_vo,
         public ValueObjects\SemanticVersion $version_vo,
+        public ValueObjects\TempFolder $tmp_folder_vo,
         public ValueObjects\Timecode $timecode_vo,
         public ValueObjects\TimeDuration $timeduration_vo,
         public ValueObjects\Url $url_vo,

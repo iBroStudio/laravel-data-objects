@@ -11,14 +11,20 @@ use Spatie\TemporaryDirectory\TemporaryDirectory;
  */
 class TempFolder extends ValueObject
 {
-    public function __construct(string $location = '', bool $deleteWhenDestroyed = true)
+    public function __construct(
+        string|TemporaryDirectory $identifier = '',
+        string                    $location = '',
+        bool                      $deleteWhenDestroyed = true)
     {
-        parent::__construct(
-            new TemporaryDirectory()
+        $value = $identifier instanceof TemporaryDirectory
+            ? $identifier
+            : new TemporaryDirectory()
+                ->name($identifier)
                 ->location($location)
                 ->deleteWhenDestroyed($deleteWhenDestroyed)
-                ->create()
-        );
+                ->create();
+
+        parent::__construct($value);
     }
 
     public function path(string $pathOrFilename = ''): string
@@ -46,5 +52,10 @@ class TempFolder extends ValueObject
     public function getName(): string
     {
         return $this->value->getName();
+    }
+
+    public function toArray(): array
+    {
+        return [serialize($this->value)];
     }
 }

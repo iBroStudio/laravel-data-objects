@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects\Casts;
 
 use IBroStudio\DataObjects\ValueObjects\Authentication\AuthenticationAbstract;
+use IBroStudio\DataObjects\ValueObjects\TempFolder;
 use IBroStudio\DataObjects\ValueObjects\ValueObject;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Casts\IterableItemCast;
@@ -13,6 +14,7 @@ use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Spatie\LaravelData\Support\Transformation\TransformationContext;
 use Spatie\LaravelData\Transformers\Transformer;
+use Spatie\TemporaryDirectory\TemporaryDirectory;
 
 final class DtoValueObjetCastTransformer implements Cast, IterableItemCast, Transformer
 {

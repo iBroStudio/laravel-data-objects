@@ -33,6 +33,7 @@ return new class extends Migration
             $table->json('name_vo')->nullable();
             $table->json('phone_vo')->nullable();
             $table->json('version_vo')->nullable();
+            $table->json('tmp_folder_vo')->nullable();
             $table->json('timecode_vo')->nullable();
             $table->json('timeduration_vo')->nullable();
             $table->json('url_vo')->nullable();

@@ -11,6 +11,7 @@ use IBroStudio\DataObjects\Tests\Support\Database\Factories\FakeDataOwnerFactory
 use IBroStudio\DataObjects\Tests\Support\DTO\FakeDTO;
 use IBroStudio\DataObjects\Tests\Support\DTO\FakeModelConfigDto;
 use IBroStudio\DataObjects\ValueObjects;
+use IBroStudio\DataObjects\ValueObjects\TempFolder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,7 @@ class FakeDataOwner extends Model
         'name_vo' => ValueObjects\Name::class,
         'phone_vo' => ValueObjects\Phone::class,
         'version_vo' => ValueObjects\SemanticVersion::class,
+        'tmp_folder_vo' => ValueObjects\TempFolder::class,
         'timecode_vo' => ValueObjects\Timecode::class,
         'timeduration_vo' => ValueObjects\TimeDuration::class,
         'url_vo' => ValueObjects\Url::class,

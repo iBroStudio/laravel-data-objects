@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Process;
 use PhpParser\Node\Stmt;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard;
-use Spatie\TemporaryDirectory\TemporaryDirectory;
 
 final class PhpFileHandler implements FileHandlerContract
 {
