@@ -13,8 +13,8 @@ class TempFolder extends ValueObject
 {
     public function __construct(
         string|TemporaryDirectory $identifier = '',
-        string                    $location = '',
-        bool                      $deleteWhenDestroyed = true)
+        string $location = '',
+        bool $deleteWhenDestroyed = true)
     {
         $value = $identifier instanceof TemporaryDirectory
             ? $identifier

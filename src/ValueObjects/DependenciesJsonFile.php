@@ -8,6 +8,8 @@ use IBroStudio\DataObjects\Enums\DependenciesJsonFilesEnum;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 
 /**
@@ -36,7 +38,7 @@ final class DependenciesJsonFile extends ValueObject
             ->map(fn ($file) => self::from($path.'/'.$file->value));
     }
 
-    public function version(?SemanticVersion $version = null): SemanticVersion
+    public function version(?SemanticVersion $version = null, ?string $prefix = null): SemanticVersion
     {
         if (! is_null($version)
             && $this->content['version'] !== $version->withoutPrefix()
@@ -49,7 +51,11 @@ final class DependenciesJsonFile extends ValueObject
             );
         }
 
-        return SemanticVersion::from($this->content['version']);
+        return SemanticVersion::from(
+            Str::of($this->content['version'])
+                ->when($prefix, fn (Stringable $version) => $version->prepend($prefix))
+                ->value()
+        );
     }
 
     public function data(?string $key = null): string|array|null
