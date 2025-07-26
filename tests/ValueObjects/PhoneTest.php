@@ -8,12 +8,20 @@ use Illuminate\Validation\ValidationException;
 it('can instantiate Phone object value', function () {
     expect(
         Phone::from('+33102030405')
-    )->toBeInstanceOf(Phone::class);
+    )->toBeInstanceOf(Phone::class)
+        ->and(
+            Phone::from('0102030405', 'FR')
+        )->toBeInstanceOf(Phone::class);
+
 });
 
 it('validate Phone object value', function () {
     Phone::from('invalid number');
 })->throws(ValidationException::class);
+
+it('validate Phone country', function () {
+    Phone::from('0102030405');
+})->throws(ValidationException::class, 'Number requires a country to be specified.');
 
 it('can return Phone object value', function () {
     $phone = '+33102030405';
@@ -21,10 +29,23 @@ it('can return Phone object value', function () {
     expect(
         Phone::from($phone)->value
     )->toEqual($phone);
+
+    $phone = '0102030405';
+
+    expect(
+        Phone::from($phone, 'FR')->value
+    )->toEqual('+33102030405');
 });
 
 it('can return Phone object value single property', function () {
     $url = Phone::from('+33102030405');
+
+    expect($url->national)->toEqual('01 02 03 04 05')
+        ->and($url->international)->toEqual('+33 1 02 03 04 05')
+        ->and($url->type)->toEqual('fixed_line')
+        ->and($url->country)->toEqual('FR');
+
+    $url = Phone::from('0102030405', 'FR');
 
     expect($url->national)->toEqual('01 02 03 04 05')
         ->and($url->international)->toEqual('+33 1 02 03 04 05')

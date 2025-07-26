@@ -20,10 +20,10 @@ final class Phone extends ValueObject
 
     private readonly PhoneNumber $phone;
 
-    public function __construct(mixed $value)
+    public function __construct(mixed $value, ?string $countryIsoCode2 = null)
     {
         try {
-            $this->phone = new PhoneNumber($value);
+            $this->phone = new PhoneNumber($value, $countryIsoCode2);
 
             parent::__construct(
                 $this->phone->formatE164()

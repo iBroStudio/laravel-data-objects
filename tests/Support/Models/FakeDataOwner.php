@@ -46,7 +46,7 @@ class FakeDataOwner extends Model
         'name_vo' => ValueObjects\Name::class,
         'phone_vo' => ValueObjects\Phone::class,
         'version_vo' => ValueObjects\SemanticVersion::class,
-        'tmp_folder_vo' => ValueObjects\TempFolder::class,
+        'tmp_folder_vo' => TempFolder::class,
         'timecode_vo' => ValueObjects\Timecode::class,
         'timeduration_vo' => ValueObjects\TimeDuration::class,
         'url_vo' => ValueObjects\Url::class,
