@@ -9,8 +9,11 @@ use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\Terminal\ValidateSshPrivateKey;
 use IBroStudio\DataObjects\Terminal\ValidateSshPublicKey;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
+use IBroStudio\DataObjects\ValueObjects\TempFolder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Spatie\Ssh\Ssh;
 
 final class SshKey extends AuthenticationAbstract
 {

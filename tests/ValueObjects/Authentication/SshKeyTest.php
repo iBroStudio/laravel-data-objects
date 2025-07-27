@@ -6,6 +6,7 @@ use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\Authentication\SshKey;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\File;
 
 it('can instantiate SshKey object value', function (
     string $username,
