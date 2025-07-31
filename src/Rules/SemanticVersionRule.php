@@ -6,7 +6,6 @@ namespace IBroStudio\DataObjects\Rules;
 
 use Closure;
 use IBroStudio\DataObjects\ValueObjects\SemanticVersion;
-use IBroStudio\DataObjects\ValueObjects\Url;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class SemanticVersionRule implements ValidationRule
