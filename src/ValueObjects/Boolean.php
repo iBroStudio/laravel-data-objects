@@ -26,8 +26,8 @@ final class Boolean extends ValueObject
         $string = is_string($value) ? $value : (string) $value;
 
         return match (true) {
-            Str::contains($string, ['1', 'true', 'on', 'yes'], ignoreCase: true) => true,
-            Str::contains($string, ['0', 'false', 'off', 'no'], ignoreCase: true) => false,
+            in_array(Str::lower($string), ['1', 'true', 'yes', 'on'], true) => true,
+            in_array(Str::lower($string), ['0', 'false', 'off', 'no'], true) => false,
             default => throw ValidationException::withMessages(['Invalid boolean.']),
         };
     }

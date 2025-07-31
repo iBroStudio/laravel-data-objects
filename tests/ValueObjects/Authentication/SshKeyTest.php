@@ -6,7 +6,6 @@ use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\ValueObjects\Authentication\SshKey;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\File;
 
 it('can instantiate SshKey object value', function (
     string $username,
@@ -52,14 +51,14 @@ it('can validate public key', function () {
         username: fake()->userName(),
         publicKey: fake()->uuid(),
     );
-})->throws(ValidationException::class, 'The public key is not a valid SSH key.');
+})->throws(ValidationException::class, 'This is not a valid SSH public key.');
 
 it('can validate private key', function () {
     SshKey::from(
         username: fake()->userName(),
         privateKey: fake()->uuid(),
     );
-})->throws(ValidationException::class, 'The private key is not a valid SSH key.');
+})->throws(ValidationException::class, 'This is not a valid SSH private key.');
 
 it('can return SshKey object value single property', function () {
     $username = fake()->userName();

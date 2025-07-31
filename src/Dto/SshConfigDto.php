@@ -8,7 +8,6 @@ use IBroStudio\DataObjects\ValueObjects\Authentication\SshKey;
 use IBroStudio\DataObjects\ValueObjects\Domain;
 use IBroStudio\DataObjects\ValueObjects\IpAddress;
 use Spatie\LaravelData\Data;
-use stdClass;
 
 class SshConfigDto extends Data
 {

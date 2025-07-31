@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects\Authentication;
 
-use Closure;
 use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
-use IBroStudio\DataObjects\Terminal\ValidateSshPrivateKey;
-use IBroStudio\DataObjects\Terminal\ValidateSshPublicKey;
+use IBroStudio\DataObjects\Rules\SshPrivateKeyRule;
+use IBroStudio\DataObjects\Rules\SshPublicKeyRule;
 use IBroStudio\DataObjects\ValueObjects\EncryptableText;
-use IBroStudio\DataObjects\ValueObjects\TempFolder;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Spatie\Ssh\Ssh;
 
 final class SshKey extends AuthenticationAbstract
 {
@@ -80,19 +76,11 @@ final class SshKey extends AuthenticationAbstract
             [
                 'publicKey' => [
                     'nullable',
-                    function (string $attribute, mixed $value, Closure $fail) {
-                        if (! new ValidateSshPublicKey($value)()) {
-                            $fail('The :attribute is not a valid SSH key.');
-                        }
-                    },
+                    new SshPublicKeyRule,
                 ],
                 'privateKey' => [
                     'nullable',
-                    function (string $attribute, mixed $value, Closure $fail) {
-                        if (! new ValidateSshPrivateKey($value)()) {
-                            $fail('The :attribute is not a valid SSH key.');
-                        }
-                    },
+                    new SshPrivateKeyRule,
                 ],
             ],
         );

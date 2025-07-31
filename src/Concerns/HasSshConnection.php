@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Concerns;
 
-use IBroStudio\DataObjects\Contracts\ModelConfigDTOContract;
 use IBroStudio\DataObjects\Dto\SshConfigDto;
 use IBroStudio\DataObjects\ValueObjects\SshConnection;
 

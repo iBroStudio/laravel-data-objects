@@ -42,7 +42,7 @@ abstract class ValueObject implements Arrayable, Castable
     {
         try {
             return static::from(...$values);
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             return null;
         }
     }

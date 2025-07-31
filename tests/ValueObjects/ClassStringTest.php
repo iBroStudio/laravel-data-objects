@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Exception;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Validation\ValidationException;
