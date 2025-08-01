@@ -33,7 +33,11 @@ class FakeDataOwnerFactory extends Factory
             'lastname_vo' => fake()->lastName,
             'name_vo' => fake()->name,
             'phone_vo' => fake()->e164PhoneNumber,
-            'version_vo' => fake()->semver(),
+            'version_vo' => fake()->semver,
+            'ssh_key_vo' => [
+                'reference' => fake()->uuid,
+                'publicKey' => getFakeSshPublicKey(),
+            ],
             'tmp_folder_vo' => TempFolder::make(),
             'timecode_vo' => fake()->time('H:i:s:v'),
             'timeduration_vo' => fake()->time('H:i:s'),
@@ -41,16 +45,19 @@ class FakeDataOwnerFactory extends Factory
             'uuid_vo' => fake()->uuid,
             'vat_number_vo' => 'FR54879706885',
             'basic_auth_vo' => [
-                'username' => fake()->userName(),
-                'password' => fake()->password(),
+                'username' => fake()->userName,
+                'password' => fake()->password,
             ],
             's3_auth_vo' => [
-                'key' => fake()->uuid(),
-                'secret' => fake()->password(),
+                'key' => fake()->uuid,
+                'secret' => fake()->password,
             ],
             'ssh_auth_vo' => [
-                'username' => getFakeSshPublicKey(),
-                'publicKey' => fake()->sshKey(),
+                'username' => fake()->userName,
+                'sshKey' => [
+                    'reference' => fake()->uuid,
+                    'publicKey' => getFakeSshPublicKey(),
+                ],
             ],
             'auth_vo' => fake()->randomElement([
                 [
@@ -58,12 +65,15 @@ class FakeDataOwnerFactory extends Factory
                     'password' => fake()->password(),
                 ],
                 [
-                    'key' => fake()->uuid(),
-                    'secret' => fake()->password(),
+                    'key' => fake()->uuid,
+                    'secret' => fake()->password,
                 ],
                 [
-                    'username' => getFakeSshPublicKey(),
-                    'publicKey' => fake()->sshKey(),
+                    'username' => fake()->userName,
+                    'sshKey' => [
+                        'reference' => fake()->uuid,
+                        'publicKey' => getFakeSshPublicKey(),
+                    ],
                 ],
             ]),
         ];

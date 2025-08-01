@@ -11,8 +11,8 @@ final class EloquentValueObjectCast implements CastsAttributes
 {
     public function __construct(
         /** @var class-string<\IBroStudio\DataObjects\ValueObjects\ValueObject> $valueObjectClass */
-        protected string $valueObjectClass,
-        protected array $arguments,
+        private string $valueObjectClass,
+        private array $arguments,
     ) {}
 
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed

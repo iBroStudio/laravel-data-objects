@@ -9,6 +9,7 @@ use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Throwable;
 
@@ -75,6 +76,8 @@ abstract class ValueObject implements Arrayable, Castable
     public function values(): array|Collection
     {
         return get_object_vars($this);
+        return Arr::map(get_object_vars($this), fn (mixed $value) => is_a($value, ValueObject::class) ? get_object_vars($value) : $value);
+
     }
 
     protected function validate(): void

@@ -37,7 +37,7 @@ class FakeDTO extends Data
         public ValueObjects\VatNumber $vat_number_vo,
         public ValueObjects\Authentication\BasicAuthentication $basic_auth_vo,
         public ValueObjects\Authentication\S3Authentication $s3_auth_vo,
-        public ValueObjects\Authentication\SshKey $ssh_auth_vo,
+        public ValueObjects\Authentication\SshAuthentication $ssh_auth_vo,
         public ValueObjects\Authentication\AuthenticationAbstract $auth_vo,
     ) {}
 }

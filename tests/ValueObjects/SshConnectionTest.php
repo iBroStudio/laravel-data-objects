@@ -3,20 +3,24 @@
 declare(strict_types=1);
 
 use IBroStudio\DataObjects\Dto\SshConfigDto;
-use IBroStudio\DataObjects\ValueObjects\Authentication\SshKey;
+use IBroStudio\DataObjects\ValueObjects\Authentication\SshAuthentication;
 use IBroStudio\DataObjects\ValueObjects\Domain;
 use IBroStudio\DataObjects\ValueObjects\IpAddress;
 use IBroStudio\DataObjects\ValueObjects\SshConnection;
+use IBroStudio\DataObjects\ValueObjects\SshKey;
 use Spatie\Ssh\Ssh;
 
 it('can instantiate SshConnection object value', function (IpAddress|Domain $host) {
     $connection = SshConnection::from(
         SshConfigDto::from([
             'host' => $host,
-            'key' => SshKey::from(
+            'sshAuthentication' => SshAuthentication::from(
                 username: fake()->userName,
-                privateKey: getFakeSshPrivateKey(),
-                passphrase: fake()->password,
+                sshKey: SshKey::from(
+                    reference: fake()->uuid,
+                    privateKey: getFakeSshPrivateKey(),
+                    passphrase: fake()->password,
+                )
             ),
         ])
     );

@@ -26,6 +26,7 @@ return [
             ValueObjects\Name::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Phone::class => DtoValueObjetCastTransformer::class,
             ValueObjects\SemanticVersion::class => DtoValueObjetCastTransformer::class,
+            ValueObjects\SshKey::class => DtoValueObjetCastTransformer::class,
             ValueObjects\TempFolder::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Timecode::class => DtoValueObjetCastTransformer::class,
             ValueObjects\TimeDuration::class => DtoValueObjetCastTransformer::class,
@@ -34,7 +35,7 @@ return [
             ValueObjects\VatNumber::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Authentication\BasicAuthentication::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Authentication\S3Authentication::class => DtoValueObjetCastTransformer::class,
-            ValueObjects\Authentication\SshKey::class => DtoValueObjetCastTransformer::class,
+            ValueObjects\Authentication\SshAuthentication::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Authentication\AuthenticationAbstract::class => DtoValueObjetCastTransformer::class,
         ],
 

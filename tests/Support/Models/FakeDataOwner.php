@@ -46,6 +46,7 @@ class FakeDataOwner extends Model
         'name_vo' => ValueObjects\Name::class,
         'phone_vo' => ValueObjects\Phone::class,
         'version_vo' => ValueObjects\SemanticVersion::class,
+        'ssh_key_vo' => ValueObjects\SSHKey::class,
         'tmp_folder_vo' => TempFolder::class,
         'timecode_vo' => ValueObjects\Timecode::class,
         'timeduration_vo' => ValueObjects\TimeDuration::class,
@@ -54,7 +55,7 @@ class FakeDataOwner extends Model
         'vat_number_vo' => ValueObjects\VatNumber::class,
         'basic_auth_vo' => ValueObjects\Authentication\BasicAuthentication::class,
         's3_auth_vo' => ValueObjects\Authentication\S3Authentication::class,
-        'ssh_auth_vo' => ValueObjects\Authentication\SshKey::class,
+        'ssh_auth_vo' => ValueObjects\Authentication\SshAuthentication::class,
         'auth_vo' => ValueObjects\Authentication\AuthenticationAbstract::class,
     ];
 

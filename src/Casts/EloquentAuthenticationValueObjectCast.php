@@ -12,8 +12,8 @@ final class EloquentAuthenticationValueObjectCast implements CastsAttributes
 {
     public function __construct(
         /** @var class-string<\IBroStudio\DataObjects\Contracts\AuthenticationContract> $authenticationValueObjectClass */
-        protected string $authenticationValueObjectClass,
-        protected array $arguments,
+        private string $authenticationValueObjectClass,
+        private array $arguments,
     ) {}
 
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed

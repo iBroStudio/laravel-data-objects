@@ -23,7 +23,7 @@ abstract class AuthenticationAbstract extends ValueObject implements Authenticat
             $class = match (true) {
                 Arr::hasAll($value, ['username', 'password']) => BasicAuthentication::class,
                 Arr::hasAll($value, ['key', 'secret']) => S3Authentication::class,
-                Arr::hasAny($value, ['publicKey', 'privateKey']) => SshKey::class,
+                Arr::has($value, ['sshKey']) => SshAuthentication::class,
                 default => throw new Exception('Unsupported'),
             };
         }

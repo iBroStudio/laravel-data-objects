@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IBroStudio\DataObjects\ValueObjects\Authentication;
+namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use IBroStudio\DataObjects\Rules\SshPrivateKeyRule;
 use IBroStudio\DataObjects\Rules\SshPublicKeyRule;
-use IBroStudio\DataObjects\ValueObjects\EncryptableText;
+use IBroStudio\DataObjects\ValueObjects\Authentication\AuthenticationAbstract;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -20,7 +20,7 @@ final class SshKey extends AuthenticationAbstract
     public readonly ?EncryptableText $passphrase;
 
     public function __construct(
-        public readonly string $username,
+        public readonly string $reference,
         EncryptableText|string|null $publicKey = null,
         EncryptableText|string|null $privateKey = null,
         EncryptableText|string|null $passphrase = null)
@@ -41,13 +41,13 @@ final class SshKey extends AuthenticationAbstract
             $passphrase instanceof EncryptableText ? $passphrase : EncryptableText::from($passphrase)
             : null;
 
-        parent::__construct($this->username);
+        parent::__construct($this->reference);
     }
 
     public function toArray(): array
     {
         return [
-            'username' => $this->username,
+            'reference' => $this->reference,
             'publicKey' => $this->publicKey?->value,
             'privateKey' => $this->privateKey?->value,
             'passphrase' => $this->passphrase?->value,
@@ -57,7 +57,7 @@ final class SshKey extends AuthenticationAbstract
     public function toDecryptedArray(): array
     {
         return [
-            'username' => $this->username,
+            'reference' => $this->reference,
             'publicKey' => $this->publicKey?->decrypt(),
             'privateKey' => $this->privateKey?->decrypt(),
             'passphrase' => $this->passphrase?->decrypt(),

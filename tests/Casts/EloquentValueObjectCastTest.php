@@ -86,6 +86,10 @@ it('can cast model property with value object', function () {
         )
         ->toBeInstanceOf(ValueObjects\SemanticVersion::class)
         ->and(
+            $model->ssh_key_vo
+        )
+        ->toBeInstanceOf(ValueObjects\SshKey::class)
+        ->and(
             $model->timecode_vo
         )
         ->toBeInstanceOf(ValueObjects\Timecode::class)
@@ -116,7 +120,7 @@ it('can cast model property with value object', function () {
         ->and(
             $model->ssh_auth_vo
         )
-        ->toBeInstanceOf(ValueObjects\Authentication\SshKey::class)
+        ->toBeInstanceOf(ValueObjects\Authentication\SshAuthentication::class)
         ->and(
             $model->auth_vo
         )

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects\Casts;
 
 use IBroStudio\DataObjects\ValueObjects\Authentication\AuthenticationAbstract;
+use IBroStudio\DataObjects\ValueObjects\Authentication\SshAuthentication;
 use IBroStudio\DataObjects\ValueObjects\ValueObject;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Casts\IterableItemCast;

@@ -40,8 +40,11 @@ function sftp_ssh_properties(): array
         'driver' => DiskDriverEnum::Sftp,
         'host' => fake()->ipv4(),
         'auth' => [
-            'username' => fake()->username(),
-            'privateKey' => getFakeSshPrivateKey(),
+            'username' => fake()->username,
+            'sshKey' => [
+                'reference' => fake()->uuid,
+                'publicKey' => getFakeSshPublicKey(),
+            ],
         ],
     ];
 }
