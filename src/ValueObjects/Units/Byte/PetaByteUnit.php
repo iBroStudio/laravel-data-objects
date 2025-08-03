@@ -12,7 +12,7 @@ final class PetaByteUnit extends ByteUnit implements UnitValueContract
 {
     public static function from(mixed ...$values): static
     {
-        return parent::from(Metric::petabytes(current($values)));
+        return parent::from(Metric::petabytes(current($values)), ByteUnitEnum::PB);
     }
 
     public static function unit(): string

@@ -12,8 +12,8 @@ use Spatie\LaravelData\Data;
 class SshConfigDto extends Data
 {
     public function __construct(
-        public IpAddress|Domain  $host,
+        public IpAddress|Domain $host,
         public SshAuthentication $sshAuthentication,
-        public int               $port = 22
+        public int $port = 22
     ) {}
 }

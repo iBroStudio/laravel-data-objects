@@ -12,7 +12,7 @@ final class ExaByteUnit extends ByteUnit implements UnitValueContract
 {
     public static function from(mixed ...$values): static
     {
-        return parent::from(Metric::exabytes(current($values)));
+        return parent::from(Metric::exabytes(current($values)), ByteUnitEnum::EB);
     }
 
     public static function unit(): string

@@ -76,6 +76,7 @@ abstract class ValueObject implements Arrayable, Castable
     public function values(): array|Collection
     {
         return get_object_vars($this);
+
         return Arr::map(get_object_vars($this), fn (mixed $value) => is_a($value, ValueObject::class) ? get_object_vars($value) : $value);
 
     }

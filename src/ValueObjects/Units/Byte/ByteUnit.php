@@ -18,7 +18,7 @@ class ByteUnit extends ValueObject implements UnitValueContract
 
     protected ByteUnits\System $system;
 
-    public function __construct(mixed $value)
+    public function __construct(mixed $value, ?ByteUnitEnum $unit = null)
     {
         if ($value instanceof ByteUnits\System) {
             $this->system = $value;
@@ -33,7 +33,7 @@ class ByteUnit extends ValueObject implements UnitValueContract
         $this->bytes = (int) $this->system->numberOfBytes();
 
         parent::__construct(
-            (float) Str::of(ByteFormatter::format($this->system->format()))
+            (float) Str::of(ByteFormatter::format($this->system->format($unit?->name)))
                 ->before(self::unit())
                 ->value()
         );
