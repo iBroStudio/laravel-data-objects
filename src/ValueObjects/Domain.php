@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use Bakame\Laravel\Pdp\Facades\DomainParser;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Pdp;
@@ -48,6 +49,12 @@ final class Domain extends ValueObject
     protected function validate(): void
     {
         parent::validate();
+
+        if (App::environment('local')
+            && Str::endsWith($this->value, config('data-objects.ov.domain.local_tlds'))) {
+
+            return;
+        }
 
         if (! $this->domain->suffix()->isICANN() && ! $this->domain->suffix()->isIANA()) {
             throw ValidationException::withMessages(['Domain is not valid.']);

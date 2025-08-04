@@ -65,4 +65,10 @@ return [
             ValueObjects\VatNumber::class => DtoValueObjetCastTransformer::class,
         ],
     ],
+
+    'ov' => [
+        'domain' => [
+            'local_tlds' => ['.local', '.test'],
+        ],
+    ],
 ];
