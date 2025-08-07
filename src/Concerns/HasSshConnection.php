@@ -21,7 +21,7 @@ trait HasSshConnection
 
     abstract public function sshConfig(): SshConfigDto;
 
-    protected function sshConnection(): Attribute
+    public function sshConnection(): Attribute
     {
         return Attribute::make(
             get: function () {

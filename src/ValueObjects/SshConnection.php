@@ -47,6 +47,8 @@ final class SshConnection extends ValueObject
 
         File::put($privateKeyPath, $this->config->sshAuthentication->sshKey->privateKey->decrypt());
 
+        File::chmod($privateKeyPath, 0600);
+
         $this->ssh->usePrivateKey($privateKeyPath);
     }
 
