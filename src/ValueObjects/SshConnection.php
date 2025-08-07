@@ -16,7 +16,7 @@ final class SshConnection extends ValueObject
 
     public function __construct(public SshConfigDto $config)
     {
-        $this->tempFolder = TempFolder::make();
+        $this->tempFolder = TempFolder::from(deleteWhenDestroyed: false);
 
         $this->ssh = Ssh::create(
             $this->config->sshAuthentication->username,
@@ -34,6 +34,11 @@ final class SshConnection extends ValueObject
         }
 
         parent::__construct($this->config->host);
+    }
+
+    public function cleanup(): void
+    {
+        $this->tempFolder->delete();
     }
 
     private function addPrivateKey(): void
