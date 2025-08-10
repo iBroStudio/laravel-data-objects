@@ -69,7 +69,11 @@ abstract class ValueObject implements Arrayable, Castable
 
     public function toJson(): false|string
     {
-        return json_encode($this->toArray());
+        if (count($array = $this->toArray()) < 2 && ! is_object($this->value)) {
+            return $this->toString();
+        }
+
+        return json_encode($array);
     }
 
     /** @return array<string, mixed>|Collection<string, mixed> */

@@ -41,7 +41,7 @@ it('can return Integer object value as array', function () {
 it('can return Integer object value as json', function () {
     expect(
         IntegerValueObject::from(19)->toJson()
-    )->toBe('[19]');
+    )->toBe('19');
 });
 
 it('can calculate an addition', function () {

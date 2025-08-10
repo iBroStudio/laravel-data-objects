@@ -62,5 +62,5 @@ it('can return ClassString object value as array', function () {
 it('can return ClassString object value as json', function () {
     expect(
         ClassString::from('test')->toJson()
-    )->toBe('["test"]');
+    )->toBe('test');
 });

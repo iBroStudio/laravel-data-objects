@@ -21,7 +21,11 @@ final class EloquentValueObjectCast implements CastsAttributes
             return null;
         }
 
-        return $this->valueObjectClass::from(...json_decode($value, true));
+        if (is_null($decoded = json_decode($value, true)) || ! is_array($decoded)) {
+            return $this->valueObjectClass::from($value);
+        }
+
+        return $this->valueObjectClass::from(...$decoded);
     }
 
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed

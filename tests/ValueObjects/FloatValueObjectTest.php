@@ -41,7 +41,7 @@ it('can return Float object value as array', function () {
 it('can return Integer object value as json', function () {
     expect(
         FloatValueObject::from(19.5)->toJson()
-    )->toBe('[19.5]');
+    )->toBe('19.5');
 });
 
 it('can calculate an addition', function () {
