@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Enums;
 
+use Illuminate\Support\Str;
+
 enum CountriesEnum: string
 {
     case AF = 'Afghanistan';
@@ -245,4 +247,14 @@ enum CountriesEnum: string
     case YE = 'Yemen';
     case ZM = 'Zambia';
     case ZW = 'Zimbabwe';
+
+    public static function fromName(string $name): self
+    {
+        $name = Str::upper($name);
+
+        return match ($name) {
+            'UK' => self::GB,
+            default => constant("self::$name"),
+        };
+    }
 }
