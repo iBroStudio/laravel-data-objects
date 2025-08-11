@@ -21,7 +21,7 @@ final class EloquentValueObjectCast implements CastsAttributes
             return null;
         }
 
-        if (is_null($decoded = json_decode($value, true)) || ! is_array($decoded)) {
+        if (is_null($decoded = json_decode((string) $value, true)) || ! is_array($decoded)) {
             return $this->valueObjectClass::from($value);
         }
 

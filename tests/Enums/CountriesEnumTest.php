@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IBroStudio\DataObjects\Enums\CountriesEnum;
 
 it('can return CountriesEnum from name', function () {
