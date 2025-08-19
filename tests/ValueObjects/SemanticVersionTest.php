@@ -41,6 +41,7 @@ it('can validate SemanticVersion object value', function () {
 })->throws(ValidationException::class);
 
 it('can increment SemanticVersion major segment', function () {
+
     expect(
         SemanticVersion::from('1.0.0')
             ->increment(SemanticVersionEnum::MAJOR)
@@ -76,4 +77,12 @@ it('can return SemanticVersion in underscored format', function () {
     expect(
         SemanticVersion::from('v.1.0.0')->underscored()
     )->toEqual('v_1_0_0');
+});
+
+it('can return SemanticVersion boundary', function () {
+    expect(
+        SemanticVersion::from('1.0.0')
+            ->boundary()
+            ->value
+    )->toEqual('1.9999.9999');
 });
