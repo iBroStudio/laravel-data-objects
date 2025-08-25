@@ -7,7 +7,6 @@ namespace IBroStudio\DataObjects\ValueObjects;
 use IBroStudio\DataObjects\Enums\SemanticVersionEnum;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 
 final class PrestashopOldVersion extends SemanticVersion

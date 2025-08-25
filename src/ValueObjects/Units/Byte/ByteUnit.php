@@ -49,6 +49,14 @@ class ByteUnit extends ValueObject implements UnitValueContract
         return ByteFormatter::format($this->system->format($unit?->name));
     }
 
+    public function roundedWithUnit(?ByteUnitEnum $unit = null): string
+    {
+        return ByteFormatter::format(
+            $this->system::bytes($this->system->numberOfBytes(), formatWithPrecision: 0)
+                ->format($unit?->name)
+        );
+    }
+
     public function convertIn(ByteUnitEnum $unit): string
     {
         return $this->withUnit($unit);

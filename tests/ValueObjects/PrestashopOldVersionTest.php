@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use IBroStudio\DataObjects\Enums\SemanticVersionEnum;
 use IBroStudio\DataObjects\ValueObjects\PrestashopOldVersion;
-use IBroStudio\DataObjects\ValueObjects\SemanticVersion;
 use Illuminate\Validation\ValidationException;
 
 it('can instantiate PrestashopOldVersion object', function () {
@@ -58,4 +57,3 @@ it('can return PrestashopOldVersion boundary', function () {
             ->value
     )->toEqual('1.6.9999.9999');
 });
-
