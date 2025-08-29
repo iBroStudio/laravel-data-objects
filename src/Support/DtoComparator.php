@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IBroStudio\DataObjects\Support;
 
 use Illuminate\Support\Facades\Cache;
 use ReflectionClass;
 use ReflectionProperty;
-use Spatie\LaravelData\Data;
 
 class DtoComparator
 {
-    public static function areEqual(Data $a, Data $b, array $exclude = []): bool
+    public static function areEqual(object $a, object $b, array $exclude = []): bool
     {
         $class = get_class($a);
 
@@ -41,11 +42,11 @@ class DtoComparator
             $valB = $property->getValue($b);
 
             if (is_object($valA) && is_object($valB)) {
-                if (!self::areEqual($valA, $valB, $exclude)) {
+                if (! self::areEqual($valA, $valB, $exclude)) {
                     return false;
                 }
             } elseif (is_array($valA) && is_array($valB)) {
-                if (!self::arraysAreEqual($valA, $valB)) {
+                if (! self::arraysAreEqual($valA, $valB)) {
                     return false;
                 }
             } else {
@@ -75,12 +76,12 @@ class DtoComparator
         }
 
         foreach ($a as $key => $value) {
-            if (!array_key_exists($key, $b)) {
+            if (! array_key_exists($key, $b)) {
                 return false;
             }
 
             if (is_array($value) && is_array($b[$key])) {
-                if (!self::arraysAreEqual($value, $b[$key])) {
+                if (! self::arraysAreEqual($value, $b[$key])) {
                     return false;
                 }
             } elseif ($value !== $b[$key]) {
@@ -96,4 +97,3 @@ class DtoComparator
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
 }
-

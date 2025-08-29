@@ -22,7 +22,7 @@ trait UpdatableDto
             ...$this->transform(
                 TransformationContextFactory::create()->withoutValueTransformation()->withoutPropertyNameMapping()
             ),
-            ...$data
+            ...$data,
         ]);
     }
 

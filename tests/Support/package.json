@@ -1,7 +1,7 @@
 {
     "name": "vancleef-arpels-grand-module-perlee",
     "type": "module",
-    "version": "4.93.52",
+    "version": "4.51.35",
     "authors": [
         {
             "name": "yann",
@@ -23,7 +23,7 @@
         "@iconify-json/mdi": "^1.2.0",
         "@nanostores/persistent": "^0.10.2",
         "@nanostores/react": "^0.7.3",
-        "astro": "4.15.8",
+        "astro": "4.16.19",
         "astro-icon": "^1.1.1",
         "astro-plyr": "^1.1.0",
         "astro-relative-links": "^0.4.0",
