@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects\ValueObjects;
 
 use IBroStudio\DataObjects\Dto\SshConfigDto;
+use IBroStudio\DataObjects\Facades\SshCommand;
+use IBroStudio\DataObjects\Testing\FakeSsh;
 use Illuminate\Support\Facades\File;
 use Spatie\Ssh\Ssh;
 
 final class SshConnection extends ValueObject
 {
-    public readonly Ssh $ssh;
+    public readonly Ssh|FakeSsh $ssh;
 
     private TempFolder $tempFolder;
 
@@ -18,7 +20,7 @@ final class SshConnection extends ValueObject
     {
         $this->tempFolder = TempFolder::from(deleteWhenDestroyed: false);
 
-        $this->ssh = Ssh::create(
+        $this->ssh = SshCommand::create(
             $this->config->sshAuthentication->username,
             $this->config->host->value,
             $this->config->port

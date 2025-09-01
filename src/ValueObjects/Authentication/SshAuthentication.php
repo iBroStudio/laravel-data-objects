@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects\Authentication;
 
-use IBroStudio\DataObjects\ValueObjects\EncryptableText;
 use IBroStudio\DataObjects\ValueObjects\SshKey;
 
 final class SshAuthentication extends AuthenticationAbstract
 {
     public readonly SshKey $sshKey;
-
-    public readonly ?EncryptableText $privateKey;
-
-    public readonly ?EncryptableText $passphrase;
 
     public function __construct(
         public readonly string $username,

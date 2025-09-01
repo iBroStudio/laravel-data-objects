@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IBroStudio\DataObjects;
 
 use IBroStudio\DataObjects\Managers\FileHandlerManager;
+use IBroStudio\DataObjects\Managers\SshCommandManager;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
@@ -25,6 +26,11 @@ final class DataObjectsServiceProvider extends PackageServiceProvider
         $this->app->singleton(
             abstract: FileHandlerManager::class,
             concrete: fn (Application $app) => new FileHandlerManager($app),
+        );
+
+        $this->app->singleton(
+            abstract: SshCommandManager::class,
+            concrete: fn (Application $app) => new SshCommandManager(),
         );
     }
 
