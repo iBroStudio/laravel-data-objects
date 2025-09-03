@@ -18,28 +18,25 @@ class DtoComparator
             return false;
         }
 
-        $properties = Cache::rememberForever("dto_properties:$class", function () use ($class) {
+        $propertyNames = Cache::rememberForever("dto_properties:$class", function () use ($class) {
 
             $reflection = new ReflectionClass($class);
-            $props = [];
+            $names = [];
 
             foreach ($reflection->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
-                $property->setAccessible(true);
-                $props[] = $property;
+                $names[] = $property->getName();
             }
 
-            return $props;
+            return $names;
         });
 
-        foreach ($properties as $property) {
-            $name = $property->getName();
-
+        foreach ($propertyNames as $name) {
             if (in_array($name, $exclude, true)) {
                 continue;
             }
 
-            $valA = $property->getValue($a);
-            $valB = $property->getValue($b);
+            $valA = $a->{$name};
+            $valB = $b->{$name};
 
             if (is_object($valA) && is_object($valB)) {
                 if (! self::areEqual($valA, $valB, $exclude)) {
