@@ -129,34 +129,6 @@ class FakeSsh
         return new FakeSshProcess($commandString, $output);
     }
 
-    protected function getMatchingResponse(string $command): string
-    {
-        if (isset($this->fakeResponses[$command])) {
-            return $this->fakeResponses[$command];
-        }
-
-        foreach ($this->fakeResponses as $pattern => $response) {
-            if ($this->matchesWildcardPattern($command, $pattern)) {
-                return $response;
-            }
-        }
-
-        return '';
-    }
-
-    protected function matchesWildcardPattern(string $command, string $pattern): bool
-    {
-        if (strpos($pattern, '*') === false) {
-            return false;
-        }
-
-        $regexPattern = preg_quote($pattern, '/');
-        $regexPattern = str_replace('\*', '.*', $regexPattern);
-        $regexPattern = '/^' . $regexPattern . '$/';
-
-        return preg_match($regexPattern, $command) === 1;
-    }
-
     public function executeAsync($command): FakeSshProcess
     {
         return $this->execute($command);
@@ -180,5 +152,33 @@ class FakeSsh
         $output = $this->fakeResponses[$command] ?? '';
 
         return new FakeSshProcess($command, $output);
+    }
+
+    protected function getMatchingResponse(string $command): string
+    {
+        if (isset($this->fakeResponses[$command])) {
+            return $this->fakeResponses[$command];
+        }
+
+        foreach ($this->fakeResponses as $pattern => $response) {
+            if ($this->matchesWildcardPattern($command, $pattern)) {
+                return $response;
+            }
+        }
+
+        return '';
+    }
+
+    protected function matchesWildcardPattern(string $command, string $pattern): bool
+    {
+        if (mb_strpos($pattern, '*') === false) {
+            return false;
+        }
+
+        $regexPattern = preg_quote($pattern, '/');
+        $regexPattern = str_replace('\*', '.*', $regexPattern);
+        $regexPattern = '/^'.$regexPattern.'$/';
+
+        return preg_match($regexPattern, $command) === 1;
     }
 }

@@ -38,7 +38,7 @@ final class EloquentValueObjectCast implements CastsAttributes
                     : $this->valueObjectClass::from($value);
             }
 
-            return $value->toJson();
+            return $value->toDatabase();
         }
 
         return null;

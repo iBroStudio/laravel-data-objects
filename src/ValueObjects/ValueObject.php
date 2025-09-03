@@ -76,6 +76,11 @@ abstract class ValueObject implements Arrayable, Castable
         return json_encode($array);
     }
 
+    public function toDatabase(): false|string
+    {
+        return json_encode($this->toArray());
+    }
+
     /** @return array<string, mixed>|Collection<string, mixed> */
     public function values(): array|Collection
     {
