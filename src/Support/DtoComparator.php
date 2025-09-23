@@ -35,8 +35,8 @@ class DtoComparator
                 continue;
             }
 
-            $valA = $a->{$name};
-            $valB = $b->{$name};
+            $valA = $a->{$name} ?? null;
+            $valB = $b->{$name} ?? null;
 
             if (is_object($valA) && is_object($valB)) {
                 if (! self::areEqual($valA, $valB, $exclude)) {
