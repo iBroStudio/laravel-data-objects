@@ -36,17 +36,31 @@ final class Domain extends ValueObject
         $this->tld = $this->domain->suffix()->toString();
     }
 
-    public function addSubDomain(string $subDomain): self
-    {
-        return new self($this->domain->withSubDomain($subDomain)->toString());
-    }
-
     public static function from(mixed ...$values): static
     {
         return parent::from(
             Str::of(current($values))
                 ->chopStart(['https://', 'http://'])
                 ->before('/')
+                ->toString()
+        );
+    }
+
+    public function addSubDomain(string $subDomain): self
+    {
+        return new self($this->domain->withSubDomain($subDomain)->toString());
+    }
+
+    public function addSubSubDomain(string $subSubDomain): self
+    {
+        return new self(
+            $this->domain
+                ->withSubDomain(
+                    Str::of($this->subDomain)
+                        ->prepend('.')
+                        ->prepend($subSubDomain)
+                        ->value()
+                )
                 ->toString()
         );
     }

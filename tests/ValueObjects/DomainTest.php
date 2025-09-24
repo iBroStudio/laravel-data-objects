@@ -48,3 +48,27 @@ it('can extract Domain object value from an url', function () {
 it('can validate Domain object value', function () {
     Domain::from('123');
 })->throws(ValidationException::class);
+
+it('can add subdomain', function () {
+    $domain = Domain::from('ibro.studio');
+
+    expect($domain->addSubDomain('www')->value)
+        ->toBe('www.ibro.studio');
+
+    $domain = Domain::from('www.ibro.studio');
+
+    expect($domain->addSubDomain('test')->value)
+        ->toBe('test.ibro.studio');
+});
+
+it('can add sub subdomain', function () {
+    $domain = Domain::from('srv.ibro.studio');
+
+    expect($domain->addSubSubDomain('test')->value)
+        ->toBe('test.srv.ibro.studio');
+
+    $domain = Domain::from('ibro.studio');
+
+    expect($domain->addSubSubDomain('test.srv')->value)
+        ->toBe('test.srv.ibro.studio');
+});
