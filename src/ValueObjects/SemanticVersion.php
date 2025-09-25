@@ -79,6 +79,11 @@ class SemanticVersion extends ValueObject
         );
     }
 
+    public function branch(): int|string
+    {
+        return $this->major;
+    }
+
     public function boundary(): static
     {
         $max = clone $this;
