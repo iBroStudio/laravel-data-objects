@@ -58,6 +58,11 @@ final class PrestashopOldVersion extends SemanticVersion
         );
     }
 
+    public function branch(): int|string
+    {
+        return $this->major;
+    }
+
     public function boundary(): static
     {
         $max = clone $this;
