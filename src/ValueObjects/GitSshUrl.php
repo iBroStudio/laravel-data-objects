@@ -16,10 +16,14 @@ final class GitSshUrl extends ValueObject
 
     public readonly string $repository;
 
+    public readonly string $url;
+
+    public readonly ?string $branch;
+
     public function __construct(mixed $value)
     {
         preg_match(
-            '/^git@(?<provider>.*)\..*:(?<username>.*)\/(?<repository>.*)\.git$/',
+            '/^git@(?<provider>.*)\..*:(?<username>.*)\/(?<repository>.*)\.git;?(?<branch>.*)$/',
             $value,
             $matches
         );
@@ -31,6 +35,8 @@ final class GitSshUrl extends ValueObject
         $this->provider = GitProvidersEnum::tryFrom($matches['provider']);
         $this->username = $matches['username'];
         $this->repository = $matches['repository'];
+        $this->branch = $matches['branch'];
+        $this->url = Str::before($value, ';');
 
         parent::__construct($value);
     }
@@ -55,5 +61,15 @@ final class GitSshUrl extends ValueObject
             ->getUrl()
             ->withPath($this->username.'/'.$this->repository)
             ->value();
+    }
+
+    public function branch(string $branch): static
+    {
+        return self::from(
+            Str::of($this->value)
+                ->append(';')
+                ->append($branch)
+                ->value()
+        );
     }
 }

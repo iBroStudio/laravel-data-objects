@@ -62,3 +62,22 @@ it('can return HTTP url', function () {
             ->toHttp()
     )->toBe('https://github.com/iBroStudio/laravel-data-repository');
 });
+
+it('can add a branch to the object', function () {
+    $git = GitSshUrl::from('git@github.com:iBroStudio/laravel-data-repository.git');
+    $git = $git->branch('develop');
+
+    expect($git)->toBeInstanceOf(GitSshUrl::class)
+        ->and($git->value)->toBe('git@github.com:iBroStudio/laravel-data-repository.git;develop')
+        ->and($git->url)->toBe('git@github.com:iBroStudio/laravel-data-repository.git')
+        ->and($git->branch)->toBe('develop');
+});
+
+it('can instantiate a GitSshUrl with a branch', function () {
+    $git = GitSshUrl::from('git@github.com:iBroStudio/laravel-data-repository.git;develop');
+
+    expect($git)->toBeInstanceOf(GitSshUrl::class)
+        ->and($git->value)->toBe('git@github.com:iBroStudio/laravel-data-repository.git;develop')
+        ->and($git->url)->toBe('git@github.com:iBroStudio/laravel-data-repository.git')
+        ->and($git->branch)->toBe('develop');
+});
