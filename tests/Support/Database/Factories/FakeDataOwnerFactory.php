@@ -76,6 +76,7 @@ class FakeDataOwnerFactory extends Factory
                     ],
                 ],
             ]),
+            'money_vo' => 100.50,
         ];
 
         return [

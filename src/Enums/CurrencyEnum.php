@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Enums;
 
-enum CurrenciesEnum: string
+enum CurrencyEnum: string
 {
     case AED = 'United Arab Emirates dirham';
     case AFN = 'Afghan afghani';

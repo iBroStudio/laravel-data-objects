@@ -6,7 +6,7 @@ namespace IBroStudio\DataObjects\Enums;
 
 use Illuminate\Support\Str;
 
-enum CountriesEnum: string
+enum CountryEnum: string
 {
     case AF = 'Afghanistan';
     case AL = 'Albania';

@@ -44,6 +44,7 @@ return new class extends Migration
             $table->json('s3_auth_vo')->nullable();
             $table->json('ssh_auth_vo')->nullable();
             $table->json('auth_vo')->nullable();
+            $table->json('money_vo')->nullable();
         });
     }
 

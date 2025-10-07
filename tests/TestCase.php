@@ -3,6 +3,7 @@
 namespace IBroStudio\DataObjects\Tests;
 
 use Bakame\Laravel\Pdp;
+use Cknow\Money\MoneyServiceProvider;
 use IBroStudio\DataObjects\DataObjectsServiceProvider;
 use IBroStudio\DataObjects\Tests\Support\TestServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -42,6 +43,7 @@ class TestCase extends Orchestra
         return [
             DataObjectsServiceProvider::class,
             LaravelDataServiceProvider::class,
+            MoneyServiceProvider::class,
             Pdp\ServiceProvider::class,
             VatCalculatorServiceProvider::class,
             TestServiceProvider::class,

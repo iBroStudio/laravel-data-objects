@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Stefro\LaravelLangCountry\LaravelLangCountryServiceProvider;
 
 final class DataObjectsServiceProvider extends PackageServiceProvider
 {

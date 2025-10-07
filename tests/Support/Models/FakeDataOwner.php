@@ -57,6 +57,7 @@ class FakeDataOwner extends Model
         's3_auth_vo' => ValueObjects\Authentication\S3Authentication::class,
         'ssh_auth_vo' => ValueObjects\Authentication\SshAuthentication::class,
         'auth_vo' => ValueObjects\Authentication\AuthenticationAbstract::class,
+        'money_vo' => ValueObjects\Money::class,
     ];
 
     protected static function newFactory(): Factory
