@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects;
 
-use Exception;
 use IBroStudio\DataObjects\Enums\CurrencyEnum;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -25,6 +23,16 @@ final class Money extends ValueObject
         };
 
         parent::__construct($this->money);
+    }
+
+    public static function from(mixed ...$values): static
+    {
+        if (Arr::hasAll($values, ['amount', 'currency'])) {
+            return new self(money(...$values));
+        }
+
+        // @phpstan-ignore-next-line
+        return new self(...$values);
     }
 
     public function format(?string $locale = null): string
@@ -46,15 +54,5 @@ final class Money extends ValueObject
     public function toArray(): array
     {
         return Arr::except($this->money->toArray(), 'formatted');
-    }
-
-    public static function from(mixed ...$values): static
-    {
-        if (Arr::hasAll($values, ['amount', 'currency'])) {
-            return new self(money(...$values));
-        }
-
-        // @phpstan-ignore-next-line
-        return new self(...$values);
     }
 }

@@ -23,6 +23,12 @@ it('can retrieve numeric code', function () {
     )->toBe('978');
 });
 
+it('can retrieve currency symbol', function () {
+    expect(
+        CurrencyEnum::EUR->getSymbol()
+    )->toBe('€');
+});
+
 it('can filter enabled currencies', function () {
     Config::set('app.currencies', ['EUR', 'USD']);
 
