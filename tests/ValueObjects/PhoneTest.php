@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use IBroStudio\DataObjects\ValueObjects\Phone;
 use Illuminate\Validation\ValidationException;
+use libphonenumber\PhoneNumberType;
 
 it('can instantiate Phone object value', function () {
     expect(
@@ -21,7 +22,7 @@ it('validate Phone object value', function () {
 
 it('validate Phone country', function () {
     Phone::from('0102030405');
-})->throws(ValidationException::class, 'Number requires a country to be specified.');
+})->throws(ValidationException::class, 'Missing or invalid default region.');
 
 it('can return Phone object value', function () {
     $phone = '+33102030405';
@@ -42,14 +43,14 @@ it('can return Phone object value single property', function () {
 
     expect($url->national)->toEqual('01 02 03 04 05')
         ->and($url->international)->toEqual('+33 1 02 03 04 05')
-        ->and($url->type)->toEqual('fixed_line')
+        ->and($url->type)->toEqual(PhoneNumberType::FIXED_LINE)
         ->and($url->country)->toEqual('FR');
 
     $url = Phone::from('0102030405', 'FR');
 
     expect($url->national)->toEqual('01 02 03 04 05')
         ->and($url->international)->toEqual('+33 1 02 03 04 05')
-        ->and($url->type)->toEqual('fixed_line')
+        ->and($url->type)->toEqual(PhoneNumberType::FIXED_LINE)
         ->and($url->country)->toEqual('FR');
 });
 
@@ -63,7 +64,7 @@ it('can return Phone object value properties', function () {
         'value' => $phone,
         'national' => '01 02 03 04 05',
         'international' => '+33 1 02 03 04 05',
-        'type' => 'fixed_line',
+        'type' => PhoneNumberType::FIXED_LINE,
         'country' => 'FR',
     ]);
 });

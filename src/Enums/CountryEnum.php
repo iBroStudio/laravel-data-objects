@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Enums;
 
+use Filament\Support\Contracts\HasLabel;
 use Illuminate\Support\Str;
 
-enum CountryEnum: string
+enum CountryEnum: string implements HasLabel
 {
     case AF = 'Afghanistan';
     case AL = 'Albania';
@@ -247,6 +248,11 @@ enum CountryEnum: string
     case YE = 'Yemen';
     case ZM = 'Zambia';
     case ZW = 'Zimbabwe';
+
+    public function getLabel(): ?string
+    {
+        return __($this->value);
+    }
 
     public static function fromName(string $name): self
     {

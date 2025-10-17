@@ -42,3 +42,9 @@ it('can format Money without decimal', function () {
     expect($money->formatWithoutDecimal())->toBe('$100')
         ->and($money->formatWithoutDecimal('fr'))->toBe('100$US');
 });
+
+it('can format Money without symbol', function () {
+    $money = Money::from(100);
+
+    expect($money->formatWithoutSymbol())->toBe(100.00);
+});

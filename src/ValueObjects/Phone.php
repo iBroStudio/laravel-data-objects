@@ -6,6 +6,7 @@ namespace IBroStudio\DataObjects\ValueObjects;
 
 use Exception;
 use Illuminate\Validation\ValidationException;
+use libphonenumber\PhoneNumberType;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 final class Phone extends ValueObject
@@ -14,7 +15,7 @@ final class Phone extends ValueObject
 
     public readonly string $international;
 
-    public readonly string $type;
+    public readonly PhoneNumberType $type;
 
     public readonly string $country;
 

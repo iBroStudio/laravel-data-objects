@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 final class Money extends ValueObject
 {
-    public readonly \Cknow\Money\Money $money;
+    private readonly \Cknow\Money\Money $money;
 
     public function __construct(mixed $value, ?CurrencyEnum $currency = null)
     {
@@ -49,6 +49,11 @@ final class Money extends ValueObject
             replace: '',
             subject: $this->format($locale)
         );
+    }
+
+    public function formatWithoutSymbol(): float
+    {
+        return (float) $this->money->formatByDecimal();
     }
 
     public function toArray(): array

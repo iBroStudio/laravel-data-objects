@@ -13,7 +13,7 @@ class VatNumberRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (! is_null($value) && is_null(VatNumber::fromOrNull($value))) {
-            $fail(':attribute is not a valid value.');
+            $fail(':attribute is not valid.');
         }
     }
 }
