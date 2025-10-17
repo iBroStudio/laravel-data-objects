@@ -249,11 +249,6 @@ enum CountryEnum: string implements HasLabel
     case ZM = 'Zambia';
     case ZW = 'Zimbabwe';
 
-    public function getLabel(): ?string
-    {
-        return __($this->value);
-    }
-
     public static function fromName(string $name): self
     {
         $name = Str::upper($name);
@@ -262,5 +257,10 @@ enum CountryEnum: string implements HasLabel
             'UK' => self::GB,
             default => constant("self::$name"),
         };
+    }
+
+    public function getLabel(): ?string
+    {
+        return __($this->value);
     }
 }

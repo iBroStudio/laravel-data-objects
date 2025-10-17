@@ -23,7 +23,7 @@
         "@iconify-json/mdi": "^1.2.0",
         "@nanostores/persistent": "^0.10.2",
         "@nanostores/react": "^0.7.3",
-        "astro": "4.16.19",
+        "astro": "5.14.5",
         "astro-icon": "^1.1.1",
         "astro-plyr": "^1.1.0",
         "astro-relative-links": "^0.4.0",
