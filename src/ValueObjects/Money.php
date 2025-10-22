@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 final class Money extends ValueObject
 {
-    private readonly \Cknow\Money\Money $money;
+    public readonly \Cknow\Money\Money $money;
 
     public function __construct(mixed $value, ?CurrencyEnum $currency = null)
     {
@@ -22,7 +22,10 @@ final class Money extends ValueObject
             default => throw ValidationException::withMessages(['Invalid value']),
         };
 
-        parent::__construct($this->money);
+        parent::__construct([
+            'amount' => (int) $this->money->getAmount(),
+            'currency' => $this->money->getCurrency()->getCode(),
+        ]);
     }
 
     public static function from(mixed ...$values): static
@@ -51,13 +54,41 @@ final class Money extends ValueObject
         );
     }
 
-    public function formatWithoutSymbol(): float
+    public function decimalAmount(): float
     {
         return (float) $this->money->formatByDecimal();
     }
 
-    public function toArray(): array
+    public function amount(): int
     {
-        return Arr::except($this->money->toArray(), 'formatted');
+        return (int) $this->money->getAmount();
+    }
+
+    public function add(Money $moneyToAdd): self
+    {
+        return new self(
+            $this->money->add($moneyToAdd->money)
+        );
+    }
+
+    public function sub(Money $moneyToSub): self
+    {
+        return new self(
+            $this->money->subtract($moneyToSub->money)
+        );
+    }
+
+    public function multiply(int|float $multiplyBy): self
+    {
+        return new self(
+            $this->money->multiply($multiplyBy)
+        );
+    }
+
+    public function divide(int|float $multiplyBy): self
+    {
+        return new self(
+            $this->money->divide($multiplyBy)
+        );
     }
 }

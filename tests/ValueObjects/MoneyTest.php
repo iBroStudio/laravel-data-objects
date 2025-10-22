@@ -8,21 +8,21 @@ it('can instantiate Money object value from integer', function () {
     $money = Money::from(100);
 
     expect($money)->toBeInstanceOf(Money::class)
-        ->and($money->value->format())->toBe('$100.00');
+        ->and($money->format())->toBe('$100.00');
 });
 
 it('can instantiate Money object value from float', function () {
     $money = Money::from(100.50);
 
     expect($money)->toBeInstanceOf(Money::class)
-        ->and($money->value->format())->toBe('$100.50');
+        ->and($money->format())->toBe('$100.50');
 });
 
 it('can instantiate Money object value from string', function () {
     $money = Money::from('$100.50');
 
     expect($money)->toBeInstanceOf(Money::class)
-        ->and($money->value->format())->toBe('$100.50');
+        ->and($money->format())->toBe('$100.50');
 });
 
 it('can format Money object value', function () {
@@ -46,5 +46,5 @@ it('can format Money without decimal', function () {
 it('can format Money without symbol', function () {
     $money = Money::from(100);
 
-    expect($money->formatWithoutSymbol())->toBe(100.00);
+    expect($money->decimalAmount())->toBe(100.00);
 });
