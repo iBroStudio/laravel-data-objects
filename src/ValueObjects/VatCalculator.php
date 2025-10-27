@@ -10,7 +10,9 @@ use Illuminate\Validation\ValidationException;
 final class VatCalculator extends ValueObject
 {
     public readonly Money $excluding_tax;
+
     public readonly Money $including_tax;
+
     public readonly Money $tax_amount;
 
     public function __construct(mixed $value, VatEnum $vatEnum)

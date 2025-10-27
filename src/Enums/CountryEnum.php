@@ -61,7 +61,7 @@ enum CountryEnum: string implements HasLabel
     case CD = 'CD';
     case CK = 'CK';
     case CR = 'CR';
-    case CI = "CI";
+    case CI = 'CI';
     case HR = 'HR';
     case CU = 'CU';
     case CY = 'CY';
@@ -120,11 +120,11 @@ enum CountryEnum: string implements HasLabel
     case KZ = 'KZ';
     case KE = 'KE';
     case KI = 'KI';
-    case KP = "KP";
+    case KP = 'KP';
     case KR = 'KR';
     case KW = 'KW';
     case KG = 'KG';
-    case LA = "LA";
+    case LA = 'LA';
     case LV = 'LV';
     case LB = 'LB';
     case LS = 'LS';

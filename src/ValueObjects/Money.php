@@ -64,14 +64,14 @@ final class Money extends ValueObject
         return (int) $this->money->getAmount();
     }
 
-    public function add(Money $moneyToAdd): self
+    public function add(self $moneyToAdd): self
     {
         return new self(
             $this->money->add($moneyToAdd->money)
         );
     }
 
-    public function sub(Money $moneyToSub): self
+    public function sub(self $moneyToSub): self
     {
         return new self(
             $this->money->subtract($moneyToSub->money)
