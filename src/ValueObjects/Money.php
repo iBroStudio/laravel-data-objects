@@ -64,6 +64,11 @@ final class Money extends ValueObject
         return (int) $this->money->getAmount();
     }
 
+    public function currency(): string
+    {
+        return $this->value['currency'];
+    }
+
     public function add(self $moneyToAdd): self
     {
         return new self(
@@ -90,5 +95,30 @@ final class Money extends ValueObject
         return new self(
             $this->money->divide($multiplyBy)
         );
+    }
+
+    public function equals(self $other): bool
+    {
+        return $this->money->equals($other->money);
+    }
+
+    public function greaterThan(self $other): bool
+    {
+        return $this->money->greaterThan($other->money);
+    }
+
+    public function greaterThanOrEqual(self $other): bool
+    {
+        return $this->money->greaterThanOrEqual($other->money);
+    }
+
+    public function lessThan(self $other): bool
+    {
+        return $this->money->lessThan($other->money);
+    }
+
+    public function lessThanOrEqual(self $other): bool
+    {
+        return $this->money->lessThanOrEqual($other->money);
     }
 }

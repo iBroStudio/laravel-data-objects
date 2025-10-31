@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\ValueObjects;
 
-use IBroStudio\DataObjects\Exceptions\EmptyValueObjectException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Number;
 use Illuminate\Validation\ValidationException;
