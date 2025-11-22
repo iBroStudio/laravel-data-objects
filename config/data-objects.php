@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use IBroStudio\DataObjects\Casts\DtoValueObjetCastTransformer;
 use IBroStudio\DataObjects\ValueObjects;
+use IBroStudio\DataObjects\ValueObjects\EloquentModelReference;
 
 return [
     'dto' => [
@@ -13,6 +14,7 @@ return [
             ValueObjects\ClassString::class => DtoValueObjetCastTransformer::class,
             ValueObjects\CompanyName::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Domain::class => DtoValueObjetCastTransformer::class,
+            ValueObjects\EloquentModelReference::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Email::class => DtoValueObjetCastTransformer::class,
             ValueObjects\EncryptableText::class => DtoValueObjetCastTransformer::class,
             ValueObjects\FirstName::class => DtoValueObjetCastTransformer::class,
@@ -47,6 +49,7 @@ return [
             ValueObjects\ClassString::class => DtoValueObjetCastTransformer::class,
             ValueObjects\CompanyName::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Domain::class => DtoValueObjetCastTransformer::class,
+            ValueObjects\EloquentModelReference::class => DtoValueObjetCastTransformer::class,
             ValueObjects\Email::class => DtoValueObjetCastTransformer::class,
             ValueObjects\EncryptableText::class => DtoValueObjetCastTransformer::class,
             ValueObjects\FirstName::class => DtoValueObjetCastTransformer::class,

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace IBroStudio\DataObjects\Enums;
 
+use Illuminate\Support\Str;
+
 enum CurrencyEnum: string
 {
     case AED = 'United Arab Emirates dirham';
@@ -177,6 +179,13 @@ enum CurrencyEnum: string
                 })
                 ->toArray()
         );
+    }
+
+    public static function fromAlphaCode(string $name): self
+    {
+        $name = Str::upper($name);
+
+        return constant("self::$name");
     }
 
     public function getLabel(): string
