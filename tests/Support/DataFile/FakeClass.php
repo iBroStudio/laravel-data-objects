@@ -26,6 +26,8 @@ class FakeClass
 
     public array $classStringArrayIndexProp = [\Carbon\CarbonImmutable::class => 'value-1'];
 
+    public static array $hooks = [\IBroStudio\DataObjects\Handlers\File\Php\Nodes\NodeObject::class => []];
+
     protected function testMethod(): bool
     {
         return true;

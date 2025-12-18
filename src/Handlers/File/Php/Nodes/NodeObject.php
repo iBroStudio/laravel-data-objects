@@ -78,10 +78,22 @@ class NodeObject implements FileHandlerNodeContract
 
             'array' => Arr::map($value, function (mixed $item, int|string $key) {
 
-                return is_array($item) ? $item : new ArrayItem(
-                    self::wrap($item),
-                    is_string($key) ? new String_($key) : null
-                );
+                if (is_string($key)) {
+                    $key = class_exists($key) ? new ClassConstFetch(new FullyQualified($key), 'class') : new String_($key);
+                } else {
+                    $key = null;
+                }
+
+                if (is_array($item)) {
+
+                    if (! count($item)) {
+                        return new ArrayItem(new Array_, $key);
+                    }
+
+                    return $item;
+                }
+
+                return new ArrayItem(self::wrap($item), $key);
             }),
 
             'boolean' => new ConstFetch(new Name(var_export($value, true))),

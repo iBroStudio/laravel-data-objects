@@ -211,3 +211,17 @@ it('can add a value with class string index', function () {
 
     expect($property->value())->toMatchArray([NodeObject::class => [CarbonImmutable::class => 'value-2']]);
 });
+
+it('can register a hook', function () {
+    $file = data_file('DataFile/FakeClass.php');
+    $file->properties()->find('hooks')
+        ->replaceBy([])
+        ->add([NodeObject::class => []]);
+
+    $file->save();
+
+    $file = data_file('DataFile/FakeClass.php');
+    $property = $file->properties()->find('hooks');
+
+    expect($property->value())->toMatchArray([NodeObject::class => []]);
+});

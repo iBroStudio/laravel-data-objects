@@ -7,6 +7,8 @@ namespace IBroStudio\DataObjects\Handlers\File\Php\Nodes;
 use IBroStudio\DataObjects\Contracts\Handlers\File\FileHandlerNodeContract;
 use IBroStudio\DataObjects\Exceptions\UnhandledValueTypeException;
 use PhpParser\Node;
+use PhpParser\Node\Expr\ClassConstFetch;
+use PhpParser\Node\Name\FullyQualified;
 
 /**
  * @property Node\Expr\Array_ $node

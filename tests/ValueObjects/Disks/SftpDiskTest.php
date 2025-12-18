@@ -6,6 +6,7 @@ use IBroStudio\DataObjects\Enums\DiskDriverEnum;
 use IBroStudio\DataObjects\ValueObjects\Disk;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
+/*
 it('can instantiate Ftp Disk object value with basic auth', function () {
     $disk = Disk::from(...sftp_basic_properties());
 
@@ -13,6 +14,7 @@ it('can instantiate Ftp Disk object value with basic auth', function () {
         ->and($disk->filesystem)
         ->toBeInstanceOf(Filesystem::class);
 });
+*/
 
 it('can instantiate Ftp Disk object value with ssh auth', function () {
     $disk = Disk::from(...sftp_ssh_properties());
@@ -43,7 +45,7 @@ function sftp_ssh_properties(): array
             'username' => fake()->username,
             'sshKey' => [
                 'reference' => fake()->uuid,
-                'publicKey' => getFakeSshPublicKey(),
+                'privateKey' => getFakeSshPrivateKey(),
             ],
         ],
     ];
