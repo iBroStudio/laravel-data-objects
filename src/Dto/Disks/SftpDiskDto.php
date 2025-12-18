@@ -22,4 +22,17 @@ class SftpDiskDto extends Data implements DiskDtoContract
         public string $root = '/',
         public bool $useAgent = true,
     ) {}
+
+    public function toDiskConfig(): array
+    {
+        return [
+            'driver' => 'sftp',
+            'host' => $this->host,
+            'root' => $this->root,
+            'username' => $this->auth->username,
+            'privateKey' => $this->auth->sshKey->privateKey->decrypt(),
+            'port' => $this->port,
+            'useAgent' => $this->useAgent,
+        ];
+    }
 }

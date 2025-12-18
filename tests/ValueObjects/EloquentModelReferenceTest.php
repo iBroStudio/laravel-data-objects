@@ -5,7 +5,6 @@ declare(strict_types=1);
 use IBroStudio\DataObjects\Tests\Support\Models\FakeChildModel;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
 use IBroStudio\DataObjects\ValueObjects\EloquentModelReference;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\ValidationException;
 
@@ -19,7 +18,6 @@ it('can instantiate EloquentModelReference object value', function () {
 it('can validate EloquentModelReference object value', function () {
     EloquentModelReference::from(ClassString::class);
 })->throws(ValidationException::class);
-
 
 it('can return Eloquent Model', function () {
     $model = FakeChildModel::factory()->create();

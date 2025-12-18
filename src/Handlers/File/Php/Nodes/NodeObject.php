@@ -8,6 +8,7 @@ use IBroStudio\DataObjects\Contracts\Handlers\File\FileHandlerNodeContract;
 use IBroStudio\DataObjects\Exceptions\UnhandledValueTypeException;
 use IBroStudio\DataObjects\ValueObjects\ClassString;
 use Illuminate\Support\Arr;
+use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
 use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
@@ -48,13 +49,17 @@ class NodeObject implements FileHandlerNodeContract
     {
         return match ($node::class) {
 
-            ClassConstFetch::class => $node->class->name,
-
             Array_::class => ArrayNode::getValue($node),
 
             ArrayItem::class => ArrayItemNode::getValue($node),
 
+            Node\Stmt\ClassConst::class => self::getValue($node->consts[0]->value),
+
+            ClassConstFetch::class => $node->class->name,
+
             ClassMethod::class => null,
+
+            ConstFetch::class => (new ConstExprEvaluator)->evaluateDirectly($node),
 
             String_::class,
             Int_::class,

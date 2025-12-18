@@ -6,6 +6,8 @@ namespace IBroStudio\DataObjects\Tests\Support\DataFile;
 
 class FakeClass
 {
+    public const VERSION = '8.2.0';
+
     public string $stringProp = 'test';
 
     public int $intProp = 21;

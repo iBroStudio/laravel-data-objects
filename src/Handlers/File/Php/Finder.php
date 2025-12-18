@@ -84,6 +84,7 @@ class Finder
                     return match (true) {
                         $node instanceof Node\Stmt\Property => $node->props[0]->name->toString() === $segment,
                         $node instanceof Node\ArrayItem => isset($node->key->value) && $node->key->value === $segment,
+                        $node instanceof Node\Stmt\ClassConst => $node->consts[0]->name->toString() === $segment,
                         default => false,
                     };
                 });

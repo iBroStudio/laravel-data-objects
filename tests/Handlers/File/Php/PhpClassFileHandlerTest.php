@@ -22,6 +22,7 @@ it('can return a property from a class', function (string $key, mixed $expected)
 
     expect($property->value())->toEqual($expected);
 })->with([
+    ['VERSION', '8.2.0'],
     ['stringProp', 'test'],
     ['intProp', 21],
     ['floatProp', 2.1],
