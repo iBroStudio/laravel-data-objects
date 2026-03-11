@@ -39,19 +39,19 @@ it('can return Phone object value', function () {
 });
 
 it('can return Phone object value single property', function () {
-    $url = Phone::from('+33102030405');
+    $phone = Phone::from('+33102030405');
 
-    expect($url->national)->toEqual('01 02 03 04 05')
-        ->and($url->international)->toEqual('+33 1 02 03 04 05')
-        ->and($url->type)->toEqual(PhoneNumberType::FIXED_LINE)
-        ->and($url->country)->toEqual('FR');
+    expect($phone->national)->toEqual('01 02 03 04 05')
+        ->and($phone->international)->toEqual('+33 1 02 03 04 05')
+        ->and($phone->type)->toEqual(PhoneNumberType::FIXED_LINE)
+        ->and($phone->country)->toEqual('FR');
 
-    $url = Phone::from('0102030405', 'FR');
+    $phone = Phone::from('0102030405', 'FR');
 
-    expect($url->national)->toEqual('01 02 03 04 05')
-        ->and($url->international)->toEqual('+33 1 02 03 04 05')
-        ->and($url->type)->toEqual(PhoneNumberType::FIXED_LINE)
-        ->and($url->country)->toEqual('FR');
+    expect($phone->national)->toEqual('01 02 03 04 05')
+        ->and($phone->international)->toEqual('+33 1 02 03 04 05')
+        ->and($phone->type)->toEqual(PhoneNumberType::FIXED_LINE)
+        ->and($phone->country)->toEqual('FR');
 });
 
 it('can return Phone object value properties', function () {
@@ -67,4 +67,10 @@ it('can return Phone object value properties', function () {
         'type' => PhoneNumberType::FIXED_LINE,
         'country' => 'FR',
     ]);
+});
+
+it('can return the dialing code from a phone number', function () {
+    $phone = Phone::from('0102030405', 'FR');
+
+    expect($phone->dialingCode)->toEqual(33);
 });

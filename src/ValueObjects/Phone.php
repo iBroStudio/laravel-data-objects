@@ -19,6 +19,7 @@ final class Phone extends ValueObject
 
     public readonly string $country;
 
+    public readonly int $dialingCode;
     private readonly PhoneNumber $phone;
 
     public function __construct(mixed $value, ?string $countryIsoCode2 = null)
@@ -38,5 +39,6 @@ final class Phone extends ValueObject
         $this->international = $this->phone->formatInternational();
         $this->type = $this->phone->getType();
         $this->country = $this->phone->getCountry();
+        $this->dialingCode = $this->phone->toLibPhoneObject()->getCountryCode();
     }
 }
