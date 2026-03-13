@@ -20,6 +20,7 @@ final class Phone extends ValueObject
     public readonly string $country;
 
     public readonly int $dialingCode;
+
     private readonly PhoneNumber $phone;
 
     public function __construct(mixed $value, ?string $countryIsoCode2 = null)
