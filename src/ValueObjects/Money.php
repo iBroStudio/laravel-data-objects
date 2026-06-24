@@ -16,7 +16,7 @@ final class Money extends ValueObject
     public function __construct(mixed $value, ?CurrencyEnum $currency = null)
     {
         $this->money = match (gettype($value)) {
-            'integer', 'double' => money((int) ($value * 100), optional($currency)->getAlphaCode()),
+            'integer', 'double' => money((int) round($value * 100), optional($currency)->getAlphaCode()),
             'string' => money_parse($value),
             'object' => $value,
             default => throw ValidationException::withMessages(['Invalid value']),
