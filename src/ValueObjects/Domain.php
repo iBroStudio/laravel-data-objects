@@ -48,11 +48,24 @@ final class Domain extends ValueObject
 
     public function addSubDomain(string $subDomain): self
     {
+        if (! $this->hasRegistrablePart()) {
+            $base = Str::of($this->value)
+                ->explode('.')
+                ->slice(-2)
+                ->implode('.');
+
+            return new self($subDomain.'.'.$base);
+        }
+
         return new self($this->domain->withSubDomain($subDomain)->toString());
     }
 
     public function addSubSubDomain(string $subSubDomain): self
     {
+        if (! $this->hasRegistrablePart()) {
+            return new self($subSubDomain.'.'.$this->value);
+        }
+
         return new self(
             $this->domain
                 ->withSubDomain(
@@ -78,5 +91,10 @@ final class Domain extends ValueObject
         if (! $this->domain->suffix()->isICANN() && ! $this->domain->suffix()->isIANA()) {
             throw ValidationException::withMessages(['Domain is not valid.']);
         }
+    }
+
+    private function hasRegistrablePart(): bool
+    {
+        return $this->registrableDomain !== '';
     }
 }

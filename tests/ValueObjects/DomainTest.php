@@ -72,3 +72,23 @@ it('can add sub subdomain', function () {
     expect($domain->addSubSubDomain('test.srv')->value)
         ->toBe('test.srv.ibro.studio');
 });
+
+it('can add subdomain on a local tld', function () {
+    app()->detectEnvironment(fn () => 'local');
+
+    expect(Domain::from('ibro.test')->addSubDomain('www')->value)
+        ->toBe('www.ibro.test');
+
+    expect(Domain::from('staging.ibro.test')->addSubDomain('www')->value)
+        ->toBe('www.ibro.test');
+});
+
+it('can add sub subdomain on a local tld', function () {
+    app()->detectEnvironment(fn () => 'local');
+
+    expect(Domain::from('srv.ibro.test')->addSubSubDomain('shop')->value)
+        ->toBe('shop.srv.ibro.test');
+
+    expect(Domain::from('ibro.test')->addSubSubDomain('shop.srv')->value)
+        ->toBe('shop.srv.ibro.test');
+});
