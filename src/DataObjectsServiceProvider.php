@@ -36,7 +36,7 @@ final class DataObjectsServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        Config::set('data', array_merge_recursive(
+        Config::set('data', array_replace_recursive(
             Config::get('data-objects.dto'),
             Config::get('data') ?? []
         ));
